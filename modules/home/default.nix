@@ -18,6 +18,7 @@
     #vscodium
     vscode
     brave
+    vmware-workstation
   ];
 
   gtk = {
@@ -27,6 +28,12 @@
     gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
     gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
     gtk4.theme = null;
+  };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk";  # segue o tema GTK
+    style.name = "adwaita-dark";
   };
 
   home.pointerCursor = {
