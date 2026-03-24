@@ -18,7 +18,11 @@ in
 
     layout = {
       gaps = 8;
-      
+      struts = {
+        left = 64;
+        right = 64;
+      };
+
       # Configuração recomendada para workflow de código
       always-center-single-column = true;  # Editor centralizado quando sozinho
       # center-focused-column = "on-overflow";  # Centraliza se não couber
