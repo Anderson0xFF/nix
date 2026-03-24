@@ -1,7 +1,8 @@
 { ... }:
 {
   networking = {
-    hostName = "nixos-workstation";
+    # hostName é definido em cada host (hosts/*/default.nix)
+    # hostName = "nixos-workstation";
     networkmanager.enable = true;
     enableIPv6 = true;
     # wireless.enable = true;

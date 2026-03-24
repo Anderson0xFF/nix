@@ -20,22 +20,29 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, niri-flake, nix4nvchad, ... }: {
-    nixosConfigurations.nixos-workstation = nixpkgs.lib.nixosSystem {
+  outputs = { self, nixpkgs, home-manager, niri-flake, nix4nvchad, ... }:
+  let
+    commonModules = [
+      niri-flake.nixosModules.niri
+      home-manager.nixosModules.home-manager
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.backupFileExtension = "bak";
+        home-manager.extraSpecialArgs = { inherit nix4nvchad; };
+        home-manager.users.alynx = import ./home.nix;
+      }
+    ];
+  in
+  {
+    nixosConfigurations.vm = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+      modules = commonModules ++ [ ./hosts/vm ];
+    };
 
-      modules = [
-        niri-flake.nixosModules.niri
-        home-manager.nixosModules.home-manager
-        ./configuration.nix
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.backupFileExtension = "bak";
-          home-manager.extraSpecialArgs = { inherit nix4nvchad; };
-          home-manager.users.alynx = import ./home.nix;
-        }
-      ];
+    nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = commonModules ++ [ ./hosts/desktop ];
     };
   };
 }

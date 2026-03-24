@@ -149,13 +149,14 @@ in
       };
     };
 
-    outputs."Virtual-1" = {
-      scale = 1.0;
-      mode = {
-        width = 2560;
-        height = 1600;
-        refresh = 59.987;
-      };
-    };
-  };
+    # Output do monitor — descomente e ajuste conforme a máquina
+    # outputs."Virtual-1" = {
+    #   scale = 1.0;
+    #   mode = {
+    #     width = 2560;
+    #     height = 1600;
+    #     refresh = 59.987;
+    #   };
+    # };
+};
 }
