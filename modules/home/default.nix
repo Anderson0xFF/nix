@@ -24,6 +24,7 @@
     enable = true;
     gtk3.extraConfig.gtk-decoration-layout = ":";
     gtk4.extraConfig.gtk-decoration-layout = ":";
+    gtk4.theme = null;
   };
 
   home.pointerCursor = {
