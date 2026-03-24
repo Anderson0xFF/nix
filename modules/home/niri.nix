@@ -20,16 +20,16 @@ in
       gaps = 8;
       
       # Corrigido: 'always-center-single-column' é a opção correta no seu flake
-      always-center-single-column = true;
-      center-focused-column = "never";
+      # always-center-single-column = true;
+      # center-focused-column = "never";
 
-      preset-column-widths = [
-        { proportion = 0.33333; }
-        { proportion = 0.5; }
-        { proportion = 0.66667; }
-      ];
+      # preset-column-widths = [
+      #   { proportion = 0.33333; }
+      #   { proportion = 0.5; }
+      #   { proportion = 0.66667; }
+      # ];
 
-      default-column-width = { proportion = 0.5; };
+      # default-column-width = { proportion = 0.5; };
 
       border = {
         enable = true;
@@ -55,8 +55,6 @@ in
       focus-ring.enable = false;
     };
 
-
-
     window-rules = [
       {
         matches = [{}];
@@ -70,7 +68,6 @@ in
       }
       # Remove o bloco do code, não existe essa opção em window-rules
     ];
-
 
     binds = {
       # Terminal e launcher
