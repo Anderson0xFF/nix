@@ -15,6 +15,8 @@
       wl-clipboard
       xwayland-satellite
       xclip
+      vmware-workstation
+
     ]
 
     # GTK / Wayland
