@@ -24,6 +24,8 @@
     enable = true;
     gtk3.extraConfig.gtk-decoration-layout = ":";
     gtk4.extraConfig.gtk-decoration-layout = ":";
+    gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
+    gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
     gtk4.theme = null;
   };
 
@@ -36,6 +38,8 @@
 
   home.sessionVariables = {
     # XCURSOR_THEME = "catppuccin-mocha-dark-cursors";
+    GTK_THEME = "Adwaita:dark";
+    XCURSOR_THEME = "Adwaita";
     XCURSOR_SIZE = "8";
     COLOR_SCHEME = "prefer-dark";
     EDITOR = "nvim";
