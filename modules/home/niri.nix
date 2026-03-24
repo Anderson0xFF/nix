@@ -21,7 +21,7 @@ in
       
       # Configuração recomendada para workflow de código
       always-center-single-column = true;  # Editor centralizado quando sozinho
-      center-focused-column = "on-overflow";  # Centraliza se não couber
+      # center-focused-column = "on-overflow";  # Centraliza se não couber
       preset-column-widths = [
         { proportion = 0.33333; }  # Terminal lateral
         { proportion = 0.5; }      # Editor balanceado
