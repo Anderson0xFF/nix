@@ -26,12 +26,12 @@ in
       # Configuração recomendada para workflow de código
       always-center-single-column = true;  # Editor centralizado quando sozinho
       # center-focused-column = "on-overflow";  # Centraliza se não couber
-      preset-column-widths = [
-        { proportion = 0.33333; }  # Terminal lateral
-        { proportion = 0.5; }      # Editor balanceado
-        { proportion = 0.66667; }  # Browser principal
-      ];
-      default-column-width = { proportion = 0.8; };  # Padrão 50%
+      # preset-column-widths = [
+      #   { proportion = 0.33333; }  # Terminal lateral
+      #   { proportion = 0.5; }      # Editor balanceado
+      #   { proportion = 0.66667; }  # Browser principal
+      # ];
+      default-column-width = { proportion = 0.9; };  # Padrão 50%
 
       border = {
         enable = true;
