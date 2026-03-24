@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   home.username = "alynx";
   home.homeDirectory = "/home/alynx";
@@ -18,6 +18,7 @@
     #vscodium
     vscode
     brave
+    vmware-workstation
   ];
 
   gtk = {
@@ -50,7 +51,7 @@
     COLOR_SCHEME = "prefer-dark";
     EDITOR = "nvim";
     VISUAL = "nvim";
-    QT_QPA_PLATFORMTHEME = "xdgdesktopportal";
+    QT_QPA_PLATFORMTHEME = lib.mkForce "xdgdesktopportal";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     QT_QPA_PLATFORM = "wayland;xcb";
   };
