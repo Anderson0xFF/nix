@@ -18,7 +18,6 @@
     #vscodium
     vscode
     brave
-    vmware-workstation
   ];
 
   gtk = {
