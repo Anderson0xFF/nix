@@ -3,7 +3,7 @@
   time.timeZone = "America/Sao_Paulo";
 
   services.xserver.xkb = {
-    layout = "us,pt";
+    layout = "us,br";
     variant = "";
   };
 

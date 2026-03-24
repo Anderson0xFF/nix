@@ -4,6 +4,11 @@ let
 in
 {
   programs.niri.settings = {
+    input.keyboard.xkb = {
+      layout = "us,br";
+      options = "grp:alt_shift_toggle";
+    };
+
     prefer-no-csd = true;
     spawn-at-startup = [
       { command = [ "waybar" ]; }
@@ -137,6 +142,9 @@ in
       # Floating
       "Mod+V".action = a.toggle-window-floating;
       "Mod+Shift+V".action = a.switch-focus-between-floating-and-tiling;
+
+      # Trocar layout do teclado
+      "Mod+Space".action = a.switch-layout "next";
 
       # Screenshot via comando externo
       "Print".action = a.spawn "niri" "msg" "action" "screenshot";
