@@ -37,8 +37,6 @@
   home.sessionVariables = {
     # XCURSOR_THEME = "catppuccin-mocha-dark-cursors";
     XCURSOR_SIZE = "8";
-    # HYPRCURSOR_THEME = "catppuccin-mocha-dark-cursors";
-    # HYPRCURSOR_SIZE = "16";
     COLOR_SCHEME = "prefer-dark";
     EDITOR = "nvim";
     VISUAL = "nvim";

@@ -8,7 +8,6 @@
     ./modules/home/fastfetch.nix
     ./modules/home/ghostty.nix
     ./modules/home/waybar.nix
-    #./modules/home/vscode.nix
     ./modules/home/niri.nix
     ./modules/home/neovim.nix
   ];
