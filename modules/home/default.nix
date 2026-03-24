@@ -15,7 +15,7 @@
     zed-editor
     discord
     thunar
-    vscodium
+    #vscodium
     vscode
     brave
   ];
