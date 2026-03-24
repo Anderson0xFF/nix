@@ -14,5 +14,7 @@
     ./modules/system/ssh.nix
   ];
 
+  virtualisation.vmware.host.enable = true;
+
   system.stateVersion = "25.11";
 }
