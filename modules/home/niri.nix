@@ -63,6 +63,11 @@ in
         };
         clip-to-geometry = true;
       }
+      # Adiciona isso:
+      {
+        matches = [{ app-id = "^code$"; }];
+        prefer-no-csd = true;  # força no-csd só pro VSCode
+      }
     ];
 
 
