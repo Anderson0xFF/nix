@@ -16,6 +16,8 @@
     discord
     thunar
     vscodium
+    vscode
+    brave
   ];
 
   home.pointerCursor = {
