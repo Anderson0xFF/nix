@@ -14,6 +14,7 @@
     swaybg
     zed-editor
     discord
+    thunar
     vscodium
   ];
 
