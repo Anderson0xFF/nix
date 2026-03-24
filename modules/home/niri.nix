@@ -7,7 +7,7 @@ in
     spawn-at-startup = [
       { command = [ "waybar" ]; }
       { command = [ "xwayland-satellite" ]; }
-      { command = [ "swaybg" "-i" "/home/alynx/nixos/assets/Redwoods from Above.jpeg" "-m" "fill" ]; }
+      { command = [ "swaybg" "-i" "/home/alynx/dotfiles/wallpapers/macOS Sonoma/Redwoods from Above.jpeg" "-m" "fill" ]; }
     ];
 
     layout = {
