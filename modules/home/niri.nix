@@ -27,7 +27,7 @@ in
         { proportion = 0.5; }      # Editor balanceado
         { proportion = 0.66667; }  # Browser principal
       ];
-      default-column-width = { proportion = 0.5; };  # Padrão 50%
+      default-column-width = { proportion = 0.8; };  # Padrão 50%
 
       border = {
         enable = true;
