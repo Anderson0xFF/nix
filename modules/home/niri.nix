@@ -150,13 +150,13 @@ in
     };
 
     # Output do monitor — descomente e ajuste conforme a máquina
-    # outputs."Virtual-1" = {
-    #   scale = 1.0;
-    #   mode = {
-    #     width = 2560;
-    #     height = 1600;
-    #     refresh = 59.987;
-    #   };
-    # };
+    outputs."HDMI-A-1" = {
+      scale = 1.0;
+      mode = {
+        width = 3840;
+        height = 2160;
+        refresh = 120.000;
+      };
+    };
 };
 }
