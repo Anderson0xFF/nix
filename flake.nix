@@ -13,9 +13,14 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix4nvchad = {
+      url = "github:nix-community/nix4nvchad";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, niri-flake, ... }: {
+  outputs = { self, nixpkgs, home-manager, niri-flake, nix4nvchad, ... }: {
     nixosConfigurations.nixos-workstation = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
 
@@ -26,6 +31,8 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "bak";
+          home-manager.extraSpecialArgs = { inherit nix4nvchad; };
           home-manager.users.alynx = import ./home.nix;
         }
       ];

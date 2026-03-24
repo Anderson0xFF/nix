@@ -1,0 +1,1 @@
+git add . && git commit -m "update" && sudo nixos-rebuild switch --flake .
