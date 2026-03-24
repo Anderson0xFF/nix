@@ -12,7 +12,7 @@ in
     ];
 
     layout = {
-      gaps = 16;
+      gaps = 8;
       
       # Corrigido: 'always-center-single-column' é a opção correta no seu flake
       always-center-single-column = true;
