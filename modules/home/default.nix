@@ -20,6 +20,12 @@
     brave
   ];
 
+  gtk = {
+    enable = true;
+    gtk3.extraConfig.gtk-decoration-layout = ":";
+    gtk4.extraConfig.gtk-decoration-layout = ":";
+  };
+
   home.pointerCursor = {
     gtk.enable = true;
     name = "Adwaita";
@@ -36,6 +42,7 @@
     EDITOR = "nvim";
     VISUAL = "nvim";
     QT_QPA_PLATFORMTHEME = "xdgdesktopportal";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     QT_QPA_PLATFORM = "wayland;xcb";
   };
 }
