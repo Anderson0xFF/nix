@@ -19,17 +19,15 @@ in
     layout = {
       gaps = 8;
       
-      # Corrigido: 'always-center-single-column' é a opção correta no seu flake
-      # always-center-single-column = true;
-      # center-focused-column = "never";
-
-      # preset-column-widths = [
-      #   { proportion = 0.33333; }
-      #   { proportion = 0.5; }
-      #   { proportion = 0.66667; }
-      # ];
-
-      # default-column-width = { proportion = 0.5; };
+      # Configuração recomendada para workflow de código
+      always-center-single-column = true;  # Editor centralizado quando sozinho
+      center-focused-column = "on-overflow";  # Centraliza se não couber
+      preset-column-widths = [
+        { proportion = 0.33333; }  # Terminal lateral
+        { proportion = 0.5; }      # Editor balanceado
+        { proportion = 0.66667; }  # Browser principal
+      ];
+      default-column-width = { proportion = 0.5; };  # Padrão 50%
 
       border = {
         enable = true;
