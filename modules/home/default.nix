@@ -9,7 +9,7 @@
     alacritty
     btop
     fastfetch
-    fuzzel
+    #fuzzel  # migrado para programs.fuzzel
     ghostty
     swaybg
     zed-editor
@@ -27,6 +27,18 @@
     gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
     gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
     gtk4.theme = null;
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+    };
+  };
+
+  programs.fuzzel = {
+    enable = true;
+    settings.main = {
+      icon-theme = "Adwaita";
+      terminal = "ghostty";
+    };
   };
 
   qt = {
