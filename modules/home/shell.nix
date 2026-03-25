@@ -4,6 +4,9 @@
     enable = true;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
+    initExtra = ''
+      bindkey -e
+    '';
   };
 
   programs.starship = {
