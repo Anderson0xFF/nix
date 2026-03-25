@@ -4,7 +4,7 @@
     enable = true;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
-    initExtra = ''
+    initContent = ''
       bindkey -e
     '';
   };
