@@ -9,4 +9,7 @@
 
   # Deduplica arquivos idênticos no nix store via hard links
   nix.settings.auto-optimise-store = true;
+
+  # Habilita flakes e o comando nix
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }

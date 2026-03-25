@@ -6,6 +6,7 @@
     syntaxHighlighting.enable = true;
     initContent = ''
       bindkey -e
+      bindkey "^[[3~" delete-char
     '';
   };
 
