@@ -163,7 +163,7 @@
       }
 
       /* Tray - pill separada */
-      .modules-right > widget:first-child > #tray {
+      #tray {
         background-color: rgba(17, 17, 27, 0.90);
         border-radius: 14px;
         padding: 0 10px;
@@ -171,17 +171,23 @@
       }
 
       /* Demais módulos do right - pill única */
-      .modules-right > widget:not(:first-child) > * {
+      #wireplumber,
+      #disk,
+      #cpu,
+      #memory,
+      #temperature,
+      #network,
+      #custom-power {
         background-color: rgba(17, 17, 27, 0.90);
         padding: 0 12px;
       }
 
-      .modules-right > widget:nth-child(2) > * {
+      #wireplumber {
         border-radius: 14px 0 0 14px;
         padding-left: 14px;
       }
 
-      .modules-right > widget:last-child > * {
+      #custom-power {
         border-radius: 0 14px 14px 0;
         padding-right: 14px;
       }

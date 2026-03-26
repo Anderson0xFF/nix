@@ -15,6 +15,7 @@
     ./modules/system/programs.nix
     ./modules/system/ssh.nix
     ./modules/system/greetd.nix
+    ./modules/system/docker.nix
   ];
 
   virtualisation.vmware.host.enable = true;

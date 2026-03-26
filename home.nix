@@ -12,5 +12,6 @@
     ./modules/home/neovim.nix
     ./modules/home/swaylock.nix
     ./modules/home/swayidle.nix
+    ./modules/home/docker-tray.nix
   ];
 }
