@@ -19,20 +19,20 @@ in
     layout = {
       gaps = 8;
       struts = {
-        left = 64;
-        right = 64;
+        left = 8;
+        right = 8;
         bottom = 8;
       };
 
       # Configuração recomendada para workflow de código
-      always-center-single-column = true;  # Editor centralizado quando sozinho
+      always-center-single-column = false;
       center-focused-column = "never";  # Não centralizar automaticamente
       preset-column-widths = [
         { proportion = 0.33333; }  # Terminal lateral
         { proportion = 0.5; }      # Editor balanceado
         { proportion = 0.66667; }  # Browser principal
       ];
-      default-column-width = { proportion = 0.7; };  # Padrão 50%
+      default-column-width = { proportion = 0.5; };
 
       border = {
         enable = true;
