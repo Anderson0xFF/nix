@@ -10,7 +10,7 @@
         spacing = 0;
         modules-left = [ "custom/nixos" "bluetooth" "niri/language" "network#speed" "custom/notification" ];
         modules-center = [ "clock" ];
-        modules-right = [ "group/tray" "group/status" ];
+        modules-right = [ "group/tray-pill" "group/status-pill" ];
 
         
 
@@ -44,12 +44,12 @@
           tooltip = false;
         };
 
-        "group/tray" = {
+        "group/tray-pill" = {
           orientation = "horizontal";
           modules = [ "tray" ];
         };
 
-        "group/status" = {
+        "group/status-pill" = {
           orientation = "horizontal";
           modules = [ "wireplumber" "disk" "cpu" "memory" "temperature" "network" "custom/power" ];
         };
@@ -171,7 +171,7 @@
       }
 
       /* Tray - pill separada */
-      #group-tray {
+      #group-tray-pill {
         background-color: rgba(17, 17, 27, 0.90);
         border-radius: 14px;
         margin: 5px 4px 5px 0;
@@ -179,14 +179,14 @@
       }
 
       /* Status - pill separada */
-      #group-status {
+      #group-status-pill {
         background-color: rgba(17, 17, 27, 0.90);
         border-radius: 14px;
         margin: 5px 0;
         padding: 0 8px;
       }
 
-      #group-status > * > * {
+      #group-status-pill > * > * {
         padding: 0 12px;
       }
 
