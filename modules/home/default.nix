@@ -16,6 +16,8 @@
     spotify
     thunar
     vscode
+    zoom
+    guvcview
   ];
 
   gtk = {
