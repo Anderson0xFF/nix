@@ -136,7 +136,7 @@ in
       # nmtui: gerenciador de rede floating
       {
         matches = [
-          { app-id = "^ghostty$"; title = "^nmtui$"; }
+          { app-id = "^com\\.mitchellh\\.ghostty$"; title = "^nmtui$"; }
         ];
         open-floating = true;
         default-column-width = {};
