@@ -7,9 +7,9 @@ let
     gtk3
     gobject-introspection
     librsvg
-    pango
+    pango.out
     gdk-pixbuf
-    atk
+    at-spi2-core
     harfbuzz
   ];
 
