@@ -7,6 +7,10 @@ let
     gtk3
     gobject-introspection
     librsvg
+    pango
+    gdk-pixbuf
+    atk
+    harfbuzz
   ];
 
   dockerTrayScript = pkgs.writeTextFile {
