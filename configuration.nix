@@ -16,6 +16,7 @@
     ./modules/system/ssh.nix
     ./modules/system/greetd.nix
     ./modules/system/docker.nix
+    ./modules/system/webcam.nix
   ];
 
   virtualisation.vmware.host.enable = true;

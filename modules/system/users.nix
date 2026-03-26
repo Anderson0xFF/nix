@@ -3,7 +3,7 @@
   users.users.alynx = {
     isNormalUser = true;
     description = "alynx";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
     shell = pkgs.zsh;
     packages = with pkgs; [];
   };
