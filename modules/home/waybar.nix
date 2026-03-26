@@ -10,9 +10,9 @@
         spacing = 0;
         modules-left = [ "custom/nixos" "bluetooth" "niri/language" "network#speed" "custom/notification" ];
         modules-center = [ "clock" ];
-        modules-right = [ "group/tray-pill" "group/status-pill" ];
+        modules-right = [ "tray" "wireplumber" "disk" "cpu" "memory" "temperature" "network" "custom/power" ];
 
-        
+
 
         "custom/nixos" = {
           format = "<span font='Symbols Nerd Font Mono'>󱄅</span>";
@@ -42,16 +42,6 @@
         "custom/notification" = {
           format = "<span font='Symbols Nerd Font Mono'>󰂚</span>";
           tooltip = false;
-        };
-
-        "group/tray-pill" = {
-          orientation = "horizontal";
-          modules = [ "tray" ];
-        };
-
-        "group/status-pill" = {
-          orientation = "horizontal";
-          modules = [ "wireplumber" "disk" "cpu" "memory" "temperature" "network" "custom/power" ];
         };
 
         clock = {
@@ -87,6 +77,7 @@
         };
 
         temperature = {
+          hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
           format = "<span font='Symbols Nerd Font Mono'>󰔄</span> {temperatureC}°";
           critical-threshold = 80;
           format-critical = "<span font='Symbols Nerd Font Mono'>󰔄</span> {temperatureC}°";
@@ -164,30 +155,35 @@
         padding: 0 4px;
       }
 
-      /* Grupo direita - container transparente */
+      /* Grupo direita - sem background, só container */
       .modules-right {
         background-color: transparent;
-        margin: 0 6px 0 0;
+        margin: 5px 6px 5px 0;
+        padding: 0;
       }
 
       /* Tray - pill separada */
-      #group-tray-pill {
+      .modules-right > widget:first-child > #tray {
         background-color: rgba(17, 17, 27, 0.90);
         border-radius: 14px;
-        margin: 5px 4px 5px 0;
-        padding: 0 8px;
+        padding: 0 10px;
+        margin-right: 6px;
       }
 
-      /* Status - pill separada */
-      #group-status-pill {
+      /* Demais módulos do right - pill única */
+      .modules-right > widget:not(:first-child) > * {
         background-color: rgba(17, 17, 27, 0.90);
-        border-radius: 14px;
-        margin: 5px 0;
-        padding: 0 8px;
-      }
-
-      #group-status-pill > * > * {
         padding: 0 12px;
+      }
+
+      .modules-right > widget:nth-child(2) > * {
+        border-radius: 14px 0 0 14px;
+        padding-left: 14px;
+      }
+
+      .modules-right > widget:last-child > * {
+        border-radius: 0 14px 14px 0;
+        padding-right: 14px;
       }
 
       #clock {
