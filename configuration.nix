@@ -7,6 +7,7 @@
     ./modules/system/fonts.nix
     ./modules/system/portals.nix
     ./modules/system/power.nix
+    ./modules/system/performance.nix
     ./modules/system/packages.nix
     ./modules/system/graphics.nix
     ./modules/system/pipewire.nix

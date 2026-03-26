@@ -13,25 +13,26 @@ in
     spawn-at-startup = [
       { command = [ "waybar" ]; }
       { command = [ "xwayland-satellite" ]; }
-      { command = [ "swaybg" "-i" "/home/alynx/dotfiles/wallpapers/macOS Sonoma/Redwoods from Above.jpeg" "-m" "fill" ]; }
+      { command = [ "swaybg" "-i" "/home/alynx/dotfiles/wallpapers/macOS Sonoma/Patagonia Lake.jpeg" "-m" "fill" ]; }
     ];
 
     layout = {
       gaps = 8;
-      # struts = {
-      #   left = 64;
-      #   right = 64;
-      # };
+      struts = {
+        left = 64;
+        right = 64;
+        bottom = 8;
+      };
 
       # Configuração recomendada para workflow de código
       always-center-single-column = true;  # Editor centralizado quando sozinho
-      center-focused-column = "always";
+      center-focused-column = "never";  # Não centralizar automaticamente
       preset-column-widths = [
         { proportion = 0.33333; }  # Terminal lateral
         { proportion = 0.5; }      # Editor balanceado
         { proportion = 0.66667; }  # Browser principal
       ];
-      default-column-width = { proportion = 0.5; };  # Padrão 50%
+      default-column-width = { proportion = 0.7; };  # Padrão 50%
 
       border = {
         enable = true;
@@ -58,6 +59,7 @@ in
     };
 
     window-rules = [
+      # Regra global: cantos arredondados em todas as janelas
       {
         matches = [{}];
         geometry-corner-radius = {
@@ -68,7 +70,91 @@ in
         };
         clip-to-geometry = true;
       }
-      # Remove o bloco do code, não existe essa opção em window-rules
+
+      # xdg-desktop-portal: file pickers de qualquer app
+      {
+        matches = [{ app-id = "^xdg-desktop-portal"; }];
+        open-floating = true;
+        max-width = 1200;
+        max-height = 800;
+      }
+
+      # Thunar: diálogos específicos
+      {
+        matches = [
+          { app-id = "^thunar$"; title = "Open With"; }
+          { app-id = "^thunar$"; title = "Properties"; }
+          { app-id = "^thunar$"; title = "Rename"; }
+          { app-id = "^thunar$"; title = "Create"; }
+          { app-id = "^thunar$"; title = "Confirm"; }
+          { app-id = "^thunar$"; title = "Delete"; }
+          { app-id = "^thunar$"; title = "Execute"; }
+        ];
+        open-floating = true;
+        max-width = 800;
+        max-height = 600;
+      }
+
+      # Firefox: Picture-in-Picture
+      {
+        matches = [
+          { app-id = "^firefox$"; title = "^Picture-in-Picture$"; }
+        ];
+        open-floating = true;
+        max-width = 640;
+        max-height = 360;
+      }
+
+      # Firefox: diálogos de salvar, auth, etc.
+      {
+        matches = [
+          { app-id = "^firefox$"; title = "Salvar"; }
+          { app-id = "^firefox$"; title = "Save"; }
+          { app-id = "^firefox$"; title = "Open"; }
+          { app-id = "^firefox$"; title = "Upload"; }
+          { app-id = "^firefox$"; title = "Sign in"; }
+          { app-id = "^firefox$"; title = "Log in"; }
+          { app-id = "^firefox$"; title = "Entrar"; }
+          { app-id = "^firefox$"; title = "Authentication"; }
+        ];
+        open-floating = true;
+        max-width = 960;
+        max-height = 720;
+      }
+
+      # Polkit: janelas de autenticação do sistema
+      {
+        matches = [
+          { app-id = "^polkit-gnome-authentication-agent-1$"; }
+          { app-id = "polkit"; }
+        ];
+        open-floating = true;
+        max-width = 600;
+        max-height = 400;
+      }
+
+      # Catch-all: diálogos genéricos por título
+      {
+        matches = [
+          { title = "^Open File"; }
+          { title = "^Save File"; }
+          { title = "^Save As"; }
+          { title = "^Select "; }
+          { title = "^Choose "; }
+          { title = "^Authentication Required"; }
+          { title = "^Authenticate"; }
+          { title = "^Confirm"; }
+          { title = "^Warning"; }
+          { title = "^Error"; }
+        ];
+        excludes = [
+          { app-id = "^ghostty$"; }
+          { app-id = "^Alacritty$"; }
+        ];
+        open-floating = true;
+        max-width = 960;
+        max-height = 720;
+      }
     ];
 
     binds = {
@@ -143,7 +229,7 @@ in
       "Mod+Shift+V".action = a.switch-focus-between-floating-and-tiling;
 
       # Trocar layout do teclado
-      "Mod+Space".action = a.switch-layout "next";
+      "Mod+Shift+Space".action = a.switch-layout "next";
 
       # Screenshot via comando externo
       "Print".action = a.spawn "niri" "msg" "action" "screenshot";
@@ -159,12 +245,13 @@ in
     };
 
     # Output do monitor — descomente e ajuste conforme a máquina
-    outputs."HDMI-A-1" = {
+    outputs."DP-1" = {
       scale = 1.0;
       mode = {
         width = 3840;
         height = 2160;
-        refresh = 120.000;
+        #refresh = 120.000;
+        refresh = 239.991;
       };
     };
 };
