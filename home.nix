@@ -10,5 +10,7 @@
     ./modules/home/waybar.nix
     ./modules/home/niri.nix
     ./modules/home/neovim.nix
+    ./modules/home/swaylock.nix
+    ./modules/home/swayidle.nix
   ];
 }

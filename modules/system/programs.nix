@@ -6,4 +6,6 @@
   programs.nix-ld.enable = true;
   programs.niri.enable = true;
   programs.niri.package = pkgs.niri;
+
+  security.pam.services.swaylock = {};
 }

@@ -189,20 +189,14 @@ in
       "Mod+Right".action = a.focus-column-right;
       "Mod+Up".action = a.focus-window-up;
       "Mod+Down".action = a.focus-window-down;
-      "Mod+H".action = a.focus-column-left;
-      "Mod+L".action = a.focus-column-right;
-      "Mod+K".action = a.focus-window-up;
-      "Mod+J".action = a.focus-window-down;
+      # Lock screen
+      "Mod+L".action = a.spawn "swaylock";
 
       # Mover janelas
       "Mod+Shift+Left".action = a.move-column-left;
       "Mod+Shift+Right".action = a.move-column-right;
       "Mod+Shift+Up".action = a.move-window-up;
       "Mod+Shift+Down".action = a.move-window-down;
-      "Mod+Shift+H".action = a.move-column-left;
-      "Mod+Shift+L".action = a.move-column-right;
-      "Mod+Shift+K".action = a.move-window-up;
-      "Mod+Shift+J".action = a.move-window-down;
 
       # Workspaces
       "Mod+Page_Down".action = a.focus-workspace-down;
