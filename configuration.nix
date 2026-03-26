@@ -14,6 +14,7 @@
     ./modules/system/users.nix
     ./modules/system/programs.nix
     ./modules/system/ssh.nix
+    ./modules/system/greetd.nix
   ];
 
   virtualisation.vmware.host.enable = true;
