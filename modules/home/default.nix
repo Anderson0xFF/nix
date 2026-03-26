@@ -13,6 +13,7 @@
     swaybg
     zed-editor
     discord
+    spotify
     thunar
     vscode
   ];
