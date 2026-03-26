@@ -15,6 +15,7 @@
       wl-clipboard
       xwayland-satellite
       xclip
+      feh
     ]
 
     # GTK / Wayland

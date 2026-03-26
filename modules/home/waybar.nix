@@ -6,11 +6,18 @@
       mainBar = {
         layer = "top";
         position = "top";
-        height = 34;
+        height = 48;
         spacing = 0;
-        modules-left = [ "bluetooth" "niri/language" "network#speed" "custom/notification" ];
+        modules-left = [ "custom/nixos" "bluetooth" "niri/language" "network#speed" "custom/notification" ];
         modules-center = [ "clock" ];
-        modules-right = [ "tray" "wireplumber" "cpu" "memory" "temperature" "network" "custom/power" ];
+        modules-right = [ "tray" "wireplumber" "disk" "cpu" "memory" "temperature" "network" "custom/power" ];
+
+        
+
+        "custom/nixos" = {
+          format = "<span font='Symbols Nerd Font Mono'>󱄅</span>";
+          tooltip = false;
+        };
 
         bluetooth = {
           format = "<span font='Symbols Nerd Font Mono'>󰂯</span>";
@@ -75,12 +82,20 @@
           format-critical = "<span font='Symbols Nerd Font Mono'>󰔄</span> {temperatureC}°";
         };
 
+        disk = {
+          format = "<span font='Symbols Nerd Font Mono'>󰋊</span> {percentage_used}%";
+          path = "/";
+          interval = 30;
+          tooltip-format = "{path}: {used} / {total} ({percentage_used}%)";
+        };
+
         network = {
           format-wifi = "<span font='Symbols Nerd Font Mono'>󰖩</span> {signalStrength}%";
           format-ethernet = "<span font='Symbols Nerd Font Mono'>󰈀</span>";
           format-disconnected = "<span font='Symbols Nerd Font Mono'>󰖪</span>";
           tooltip-format-wifi = "{essid} ({signalStrength}%)\n{ipaddr}";
           tooltip-format-ethernet = "{ifname}: {ipaddr}";
+          on-click = "ghostty -e nmtui";
         };
 
         "custom/power" = {
@@ -94,54 +109,69 @@
     style = ''
       * {
         font-family: "JetBrainsMono Nerd Font", "JetBrainsMono NF", "Symbols Nerd Font Mono", monospace;
-        font-size: 14px;
+        font-size: 17px;
         min-height: 0;
       }
 
       window#waybar {
-        background-color: rgba(17, 17, 27, 0.85);
+        background-color: transparent;
         color: #cdd6f4;
         border: none;
       }
 
-      /* Pills da esquerda */
+      /* Todos os módulos - sem background individual */
+      #custom-nixos,
       #bluetooth,
       #language,
       #network.speed,
-      #custom-notification {
-        background-color: rgba(17, 17, 27, 0.85);
-        border-radius: 8px;
-        padding: 0 10px;
-        margin: 4px 3px;
-        color: #cdd6f4;
-      }
-
-      /* Centro - relógio em pill */
-      #clock {
-        background-color: rgba(17, 17, 27, 0.85);
-        border-radius: 8px;
-        padding: 0 14px;
-        margin: 4px 3px;
-        font-weight: bold;
-        color: #cdd6f4;
-      }
-
-      /* Direita - pills arredondadas com cor de acento */
+      #custom-notification,
+      #clock,
+      #tray,
       #wireplumber,
+      #disk,
       #cpu,
       #memory,
       #temperature,
       #network,
       #custom-power {
-        background-color: rgba(17, 17, 27, 0.85);
-        border-radius: 8px;
+        padding: 0 8px;
+        color: #cdd6f4;
+      }
+
+      /* Grupo esquerda - pill única */
+      .modules-left {
+        background-color: rgba(17, 17, 27, 0.90);
+        border-radius: 14px;
+        margin: 5px 0 5px 6px;
+        padding: 0 4px;
+      }
+
+      /* Grupo centro - pill única */
+      .modules-center {
+        background-color: rgba(17, 17, 27, 0.90);
+        border-radius: 14px;
+        margin: 5px 0;
+        padding: 0 4px;
+      }
+
+      /* Grupo direita - pill única */
+      .modules-right {
+        background-color: rgba(17, 17, 27, 0.90);
+        border-radius: 14px;
+        margin: 5px 6px 5px 0;
+        padding: 0 8px;
+      }
+
+      .modules-right > widget > * {
+        padding: 0 12px;
+      }
+
+      #clock {
+        font-weight: bold;
         padding: 0 10px;
-        margin: 4px 3px;
       }
 
       #tray {
-        padding: 0 6px;
-        margin: 2px 2px;
         color: #9399b2;
       }
 
@@ -151,16 +181,10 @@
       #memory { color: #89b4fa; }
       #temperature { color: #fab387; }
       #temperature.critical { color: #f38ba8; }
+      #disk { color: #cba6f7; }
       #network { color: #89dceb; }
       #custom-power { color: #f38ba8; }
-
-      #bluetooth {
-        margin-left: 6px;
-      }
-
-      #custom-power {
-        margin-right: 6px;
-      }
+      #custom-nixos { color: #89b4fa; }
 
       tooltip {
         background-color: #1e1e2e;

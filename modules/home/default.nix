@@ -9,15 +9,12 @@
     alacritty
     btop
     fastfetch
-    #fuzzel  # migrado para programs.fuzzel
     ghostty
     swaybg
     zed-editor
     discord
     thunar
-    #vscodium
     vscode
-    brave
   ];
 
   gtk = {
