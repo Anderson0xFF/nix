@@ -19,8 +19,8 @@ in
     layout = {
       gaps = 8;
       struts = {
-        left = 8;
-        right = 8;
+        left = 12;
+        right = 12;
         bottom = 8;
       };
 
