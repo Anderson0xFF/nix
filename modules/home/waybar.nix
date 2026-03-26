@@ -10,7 +10,7 @@
         spacing = 0;
         modules-left = [ "custom/nixos" "bluetooth" "niri/language" "network#speed" "custom/notification" ];
         modules-center = [ "clock" ];
-        modules-right = [ "tray" "wireplumber" "disk" "cpu" "memory" "temperature" "network" "custom/power" ];
+        modules-right = [ "group/tray" "group/status" ];
 
         
 
@@ -42,6 +42,16 @@
         "custom/notification" = {
           format = "<span font='Symbols Nerd Font Mono'>󰂚</span>";
           tooltip = false;
+        };
+
+        "group/tray" = {
+          orientation = "horizontal";
+          modules = [ "tray" ];
+        };
+
+        "group/status" = {
+          orientation = "horizontal";
+          modules = [ "wireplumber" "disk" "cpu" "memory" "temperature" "network" "custom/power" ];
         };
 
         clock = {
@@ -154,15 +164,29 @@
         padding: 0 4px;
       }
 
-      /* Grupo direita - pill única */
+      /* Grupo direita - container transparente */
       .modules-right {
+        background-color: transparent;
+        margin: 0 6px 0 0;
+      }
+
+      /* Tray - pill separada */
+      #group-tray {
         background-color: rgba(17, 17, 27, 0.90);
         border-radius: 14px;
-        margin: 5px 6px 5px 0;
+        margin: 5px 4px 5px 0;
         padding: 0 8px;
       }
 
-      .modules-right > widget > * {
+      /* Status - pill separada */
+      #group-status {
+        background-color: rgba(17, 17, 27, 0.90);
+        border-radius: 14px;
+        margin: 5px 0;
+        padding: 0 8px;
+      }
+
+      #group-status > * > * {
         padding: 0 12px;
       }
 
