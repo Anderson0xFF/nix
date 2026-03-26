@@ -95,7 +95,7 @@
           format-disconnected = "<span font='Symbols Nerd Font Mono'>󰖪</span>";
           tooltip-format-wifi = "{essid} ({signalStrength}%)\n{ipaddr}";
           tooltip-format-ethernet = "{ifname}: {ipaddr}";
-          on-click = "ghostty -e nmtui";
+          on-click = "ghostty --title=nmtui -e nmtui";
         };
 
         "custom/power" = {

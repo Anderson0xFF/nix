@@ -133,6 +133,18 @@ in
         max-height = 400;
       }
 
+      # nmtui: gerenciador de rede floating
+      {
+        matches = [
+          { app-id = "^ghostty$"; title = "^nmtui$"; }
+        ];
+        open-floating = true;
+        default-column-width = {};
+        default-window-height = {};
+        max-width = 600;
+        max-height = 450;
+      }
+
       # Catch-all: diálogos genéricos por título
       {
         matches = [
