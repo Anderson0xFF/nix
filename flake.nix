@@ -18,11 +18,17 @@
       url = "github:nix-community/nix4nvchad";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, niri-flake, nix4nvchad, ... }:
+  outputs = { self, nixpkgs, home-manager, niri-flake, nix4nvchad, rust-overlay, ... }:
   let
     commonModules = [
+      { nixpkgs.overlays = [ rust-overlay.overlays.default ]; }
       niri-flake.nixosModules.niri
       home-manager.nixosModules.home-manager
       {
