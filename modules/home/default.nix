@@ -15,6 +15,7 @@
     discord
     spotify
     thunar
+    nautilus
     vscode
     zoom-us
     guvcview
