@@ -17,6 +17,7 @@
     ./modules/system/greetd.nix
     ./modules/system/docker.nix
     ./modules/system/webcam.nix
+    ./modules/system/suspend-debug.nix
   ];
 
   virtualisation.vmware.host.enable = true;

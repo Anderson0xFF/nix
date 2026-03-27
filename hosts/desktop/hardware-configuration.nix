@@ -33,7 +33,9 @@
       options = [ "uid=1000" "gid=100" "dmask=022" "fmask=133" ];
     };
 
-  swapDevices = [ ];
+  swapDevices = [
+    { device = "/var/lib/swapfile"; size = 16 * 1024; }  # 16GB swapfile
+  ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

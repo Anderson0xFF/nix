@@ -31,6 +31,9 @@
     freeMemThreshold = 5;
     freeSwapThreshold = 5;
     enableNotifications = true;
+    extraArgs = [
+      "--avoid" "(^|/)(code|code-oss|codium|electron)$"
+    ];
   };
 
   # /tmp na RAM - compilações mais rápidas

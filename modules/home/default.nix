@@ -16,7 +16,7 @@
     spotify
     thunar
     vscode
-    zoom
+    zoom-us
     guvcview
   ];
 
@@ -65,5 +65,10 @@
     QT_QPA_PLATFORMTHEME = lib.mkForce "xdgdesktopportal";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     QT_QPA_PLATFORM = "wayland;xcb";
+
+    # Electron apps (VS Code, Discord, etc.) em Wayland nativo
+    # Evita dependência do xwayland-satellite no resume de suspend
+    NIXOS_OZONE_WL = "1";
+    ELECTRON_OZONE_PLATFORM_HINT = "wayland";
   };
 }
