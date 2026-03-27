@@ -11,7 +11,7 @@
   boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.kernelParams = [
     "amd_pstate=active"
-    "mem_sleep_default=s2idle"  # Evita GPU MODE1 reset no suspend (S0ix em vez de S3)
+    "amdgpu.reset_method=4"  # BACO reset (mais suave que MODE1) — evita crash de apps no resume
   ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
