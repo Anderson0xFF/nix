@@ -1,10 +1,9 @@
 { pkgs, ... }:
+let
+  rustToolchain = pkgs.rust-bin.nightly.latest.default.override {
+    extensions = [ "rust-src" "rust-analyzer" ];
+  };
+in
 {
-  environment.systemPackages = with pkgs; [
-    rustc
-    cargo
-    rustfmt
-    clippy
-    rust-analyzer
-  ];
+  environment.systemPackages = [ rustToolchain ];
 }

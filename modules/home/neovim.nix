@@ -24,7 +24,6 @@
       lua-language-server
       nil
       nodePackages.typescript-language-server
-      rust-analyzer
     ];
 
     chadrcConfig = ''
