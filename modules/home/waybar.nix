@@ -78,9 +78,10 @@
 
         temperature = {
           hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
-          format = "<span font='Symbols Nerd Font Mono'>󰔄</span> {temperatureC}°";
-          critical-threshold = 80;
-          format-critical = "<span font='Symbols Nerd Font Mono'>󰔄</span> {temperatureC}°";
+          critical-threshold = 75;
+          "format" = "{temperatureC}°C {icon}";
+          "format-critical" = "{temperatureC}°C {icon}";
+          "format-icons" = ["" "" ""];
         };
 
         disk = {
