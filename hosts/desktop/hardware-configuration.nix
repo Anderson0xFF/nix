@@ -9,7 +9,10 @@
     ];
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
-  boot.kernelParams = [ "amd_pstate=active" ];
+  boot.kernelParams = [
+    "amd_pstate=active"
+    "mem_sleep_default=s2idle"  # Evita GPU MODE1 reset no suspend (S0ix em vez de S3)
+  ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
