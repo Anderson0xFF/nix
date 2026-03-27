@@ -18,6 +18,7 @@
     vscode
     zoom-us
     guvcview
+    steam
   ];
 
   gtk = {
