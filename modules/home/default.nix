@@ -6,6 +6,10 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    postgresql
+    postgresql.lib
+    postgresql.dev
+    pkg-config
     alacritty
     btop
     fastfetch
@@ -75,5 +79,8 @@
     # sobrescreve com --ozone-platform=wayland (flag mais forte).
     NIXOS_OZONE_WL = "1";
     ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+
+    PKG_CONFIG_PATH = "${pkgs.postgresql.dev}/lib/pkgconfig";
+    LIBRARY_PATH = "${pkgs.postgresql.lib}/lib";
   };
 }

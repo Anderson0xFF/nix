@@ -16,7 +16,6 @@
       xwayland-satellite
       xclip
       feh
-      postgresql
     ]
 
     # GTK / Wayland
