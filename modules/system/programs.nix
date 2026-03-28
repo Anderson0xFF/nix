@@ -18,6 +18,6 @@
   };
   programs.niri.enable = true;
   programs.niri.package = pkgs.niri;
-
+  services.envfs.enable = true;
   security.pam.services.swaylock = {};
 }
