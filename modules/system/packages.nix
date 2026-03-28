@@ -16,6 +16,7 @@
       xwayland-satellite
       xclip
       feh
+      postgresql
     ]
 
     # GTK / Wayland
@@ -26,4 +27,6 @@
       libadwaita
       gsettings-desktop-schemas
     ];
+
+    
 }
