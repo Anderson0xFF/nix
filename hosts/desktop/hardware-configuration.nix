@@ -11,7 +11,8 @@
   boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.kernelParams = [
     "amd_pstate=active"
-    "amdgpu.reset_method=4"  # BACO reset (mais suave que MODE1) — evita crash de apps no resume
+    "amdgpu.ppfeaturemask=0xffff7fff"  # Desativa GFXOFF — evita MODE1 reset no resume (RDNA2)
+    "amdgpu.dcdebugmask=0x10"           # Melhora resume do display controller
   ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
@@ -41,6 +42,7 @@
   ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.enableAllFirmware = true;
+  hardware.cpu.amd.updateMicrocode = true;
 }
 
