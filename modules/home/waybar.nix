@@ -109,6 +109,11 @@
     };
 
     style = ''
+      /* Cores principais - altere aqui para mudar o tema */
+      @define-color bg-pill rgba(17, 17, 27, 0.90); /* fundo das pills */
+      @define-color fg #cdd6f4;                     /* texto padrão */
+      @define-color bg-tooltip #1e1e2e;             /* fundo dos tooltips */
+
       * {
         font-family: "JetBrainsMono Nerd Font", "JetBrainsMono NF", "Symbols Nerd Font Mono", monospace;
         font-size: 17px;
@@ -117,7 +122,7 @@
 
       window#waybar {
         background-color: transparent;
-        color: #cdd6f4;
+        color: @fg;
         border: none;
       }
 
@@ -136,13 +141,14 @@
       #temperature,
       #network,
       #custom-power {
+        background-color: transparent;
         padding: 0 8px;
-        color: #cdd6f4;
+        color: @fg;
       }
 
       /* Grupo esquerda - pill única */
       .modules-left {
-        background-color: rgba(17, 17, 27, 0.90);
+        background-color: @bg-pill;
         border-radius: 14px;
         margin: 5px 0 5px 6px;
         padding: 0 4px;
@@ -150,13 +156,13 @@
 
       /* Grupo centro - pill única */
       .modules-center {
-        background-color: rgba(17, 17, 27, 0.90);
+        background-color: @bg-pill;
         border-radius: 14px;
         margin: 5px 0;
         padding: 0 4px;
       }
 
-      /* Grupo direita - sem background, só container */
+      /* Grupo direita - pill única com tray separado */
       .modules-right {
         background-color: transparent;
         margin: 5px 6px 5px 0;
@@ -165,7 +171,7 @@
 
       /* Tray - pill separada */
       #tray {
-        background-color: rgba(17, 17, 27, 0.90);
+        background-color: @bg-pill;
         border-radius: 14px;
         padding: 0 10px;
         margin-right: 6px;
@@ -179,7 +185,7 @@
       #temperature,
       #network,
       #custom-power {
-        background-color: rgba(17, 17, 27, 0.90);
+        background-color: @bg-pill;
         padding: 0 12px;
       }
 
@@ -198,10 +204,7 @@
         padding: 0 10px;
       }
 
-      #tray {
-        color: #9399b2;
-      }
-
+      #tray { color: #9399b2; }
       #wireplumber { color: #f5c2e7; }
       #wireplumber.muted { color: #6c7086; }
       #cpu { color: #a6e3a1; }
@@ -214,10 +217,10 @@
       #custom-nixos { color: #89b4fa; }
 
       tooltip {
-        background-color: #1e1e2e;
-        border: 1px solid rgba(17, 17, 27, 0.85);
+        background-color: @bg-tooltip;
+        border: 1px solid @bg-pill;
         border-radius: 8px;
-        color: #cdd6f4;
+        color: @fg;
       }
     '';
   };
