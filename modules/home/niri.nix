@@ -14,8 +14,7 @@ in
       { command = [ "waybar" ]; }
       { command = [ "xwayland-satellite" ]; }
       { command = [ "swww-daemon" ]; }
-      { command = [ "swww" "img" "/home/alynx/dotfiles/wallpapers/Abstract/573.jpg" "--transition-type" "fade" ]; }
-    
+      { command = [ "swww" "img" "/home/alynx/dotfiles/wallpapers/Abstract/574.jpg" "--transition-type" "fade" ]; }
     ];
 
     layout = {
