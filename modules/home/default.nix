@@ -10,11 +10,12 @@
     btop
     fastfetch
     ghostty
-    swaybg
+    swww
     zed-editor
     discord
     spotify
     thunar
+    xfce.tumbler
     nautilus
     vscode
     zoom-us

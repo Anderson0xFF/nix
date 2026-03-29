@@ -13,7 +13,9 @@ in
     spawn-at-startup = [
       { command = [ "waybar" ]; }
       { command = [ "xwayland-satellite" ]; }
-      { command = [ "swaybg" "-i" "/home/alynx/dotfiles/wallpapers/macOS Sonoma/Patagonia Lake.jpeg" "-m" "fill" ]; }
+      { command = [ "swww-daemon" ]; }
+      { command = [ "swww" "img" "/home/alynx/dotfiles/wallpapers/Abstract/573.jpg" "--transition-type" "fade" ]; }
+    
     ];
 
     layout = {
