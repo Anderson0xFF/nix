@@ -15,7 +15,7 @@
     discord
     spotify
     thunar
-    xfce.tumbler
+    tumbler
     nautilus
     vscode
     zoom-us
