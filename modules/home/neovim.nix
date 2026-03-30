@@ -26,6 +26,19 @@
       nodePackages.typescript-language-server
     ];
 
+    extraPlugins = ''
+      return {
+        {
+          "nvim-tree/nvim-tree.lua",
+          opts = {
+            view = {
+              adaptive_size = true,
+            },
+          },
+        },
+      }
+    '';
+
     chadrcConfig = ''
 ---@type ChadrcConfig
 local M = {}
