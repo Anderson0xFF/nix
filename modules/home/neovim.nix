@@ -54,6 +54,13 @@ pcall(function()
     nomap(mode, "<Right>")
   end
 end)
+
+-- Navegar entre janelas/splits com Ctrl+Setas
+local map = vim.keymap.set
+map("n", "<C-Left>", "<C-w>h", { desc = "Window left" })
+map("n", "<C-Down>", "<C-w>j", { desc = "Window down" })
+map("n", "<C-Up>", "<C-w>k", { desc = "Window up" })
+map("n", "<C-Right>", "<C-w>l", { desc = "Window right" })
     '';
   };
 }
