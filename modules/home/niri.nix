@@ -238,8 +238,11 @@ in
       # Trocar layout do teclado
       "Mod+Shift+Space".action = a.switch-layout "next";
 
-      # Screenshot via comando externo
-      "Print".action = a.spawn "niri" "msg" "action" "screenshot";
+      # Screenshot (grim + slurp — sem borrão)
+      "Print".action = a.spawn "sh" "-c" "grim - | wl-copy";
+      "Shift+Print".action = a.spawn "sh" "-c" "grim -g \"$(slurp)\" - | wl-copy";
+      "Mod+Print".action = a.spawn "sh" "-c" "grim ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png";
+      "Mod+Shift+Print".action = a.spawn "sh" "-c" "grim -g \"$(slurp)\" ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png";
 
       # Overview
       "Mod+Tab".action = a.toggle-overview;

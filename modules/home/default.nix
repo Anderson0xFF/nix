@@ -21,6 +21,9 @@
     zoom-us
     guvcview
     steam
+    grim
+    slurp
+    wl-clipboard
   ];
 
   gtk = {
