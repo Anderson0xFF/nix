@@ -11,6 +11,7 @@
     fastfetch
     ghostty
     swww
+    waypaper
     zed-editor
     discord
     spotify
