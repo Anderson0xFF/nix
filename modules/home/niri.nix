@@ -146,6 +146,14 @@ in
         max-height = 450;
       }
 
+      # Waypaper: seletor de wallpaper floating
+      {
+        matches = [{ app-id = "^waypaper$"; }];
+        open-floating = true;
+        max-width = 900;
+        max-height = 600;
+      }
+
       # Catch-all: diálogos genéricos por título
       {
         matches = [
