@@ -19,7 +19,7 @@
     tumbler
     nautilus
     vscode
-    dbeaver
+    dbeaver-bin
     zoom-us
     guvcview
     steam
