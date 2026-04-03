@@ -19,6 +19,7 @@
     tumbler
     nautilus
     vscode
+    dbeaver
     zoom-us
     guvcview
     steam
