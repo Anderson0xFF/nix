@@ -11,5 +11,6 @@
     vulkan-tools
     vulkan-loader
     vulkan-validation-layers
+    renderdoc
   ];
 }
