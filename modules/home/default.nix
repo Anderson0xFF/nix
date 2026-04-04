@@ -20,6 +20,7 @@
     nautilus
     vscode
     dbeaver-bin
+    jetbrains.datagrip
     zoom-us
     guvcview
     steam
