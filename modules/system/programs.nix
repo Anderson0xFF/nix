@@ -14,6 +14,17 @@
       gtk4
       libadwaita
       gsettings-desktop-schemas
+
+      # Windowing / input (winit)
+      wayland
+      libxkbcommon
+      libx11
+      libxcursor
+      libxrandr
+      libxi
+
+      # GPU / Vulkan
+      vulkan-loader
     ];
   };
   programs.niri.enable = true;
