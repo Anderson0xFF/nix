@@ -63,6 +63,13 @@
     package = pkgs.adwaita-icon-theme;
   };
 
+  # RenderDoc procura o manifesto Vulkan em ~/.local/share/vulkan/implicit_layer.d
+  # ao iniciar; sem ele, exibe uma caixa pedindo para rodar `renderdoccmd vulkanlayer
+  # --register --system`, que tenta escrever em /etc (imutável no NixOS).
+  # Este symlink satisfaz a checagem de forma puramente declarativa.
+  xdg.dataFile."vulkan/implicit_layer.d/renderdoc_capture.json".source =
+    "${pkgs.renderdoc}/share/vulkan/implicit_layer.d/renderdoc_capture.json";
+
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
