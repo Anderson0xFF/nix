@@ -106,17 +106,16 @@ in
         max-height = 360;
       }
 
-      # Firefox: diálogos de salvar, auth, etc.
+      # Firefox: diálogos de salvar, upload e autenticação
+      # Títulos ancorados para não casar páginas web que comecem com "Open"/"Sign in"/etc.
       {
         matches = [
-          { app-id = "^firefox$"; title = "Salvar"; }
-          { app-id = "^firefox$"; title = "Save"; }
-          { app-id = "^firefox$"; title = "Open"; }
-          { app-id = "^firefox$"; title = "Upload"; }
-          { app-id = "^firefox$"; title = "Sign in"; }
-          { app-id = "^firefox$"; title = "Log in"; }
-          { app-id = "^firefox$"; title = "Entrar"; }
-          { app-id = "^firefox$"; title = "Authentication"; }
+          { app-id = "^firefox$"; title = "^Enter name of file to save to"; }
+          { app-id = "^firefox$"; title = "^Salvar como$"; }
+          { app-id = "^firefox$"; title = "^File Upload$"; }
+          { app-id = "^firefox$"; title = "^Enviar arquivo$"; }
+          { app-id = "^firefox$"; title = "^Authentication Required$"; }
+          { app-id = "^firefox$"; title = "^Autenticação necessária$"; }
         ];
         open-floating = true;
         max-width = 960;
@@ -154,28 +153,6 @@ in
         max-height = 600;
       }
 
-      # Catch-all: diálogos genéricos por título
-      {
-        matches = [
-          { title = "^Open File"; }
-          { title = "^Save File"; }
-          { title = "^Save As"; }
-          { title = "^Select "; }
-          { title = "^Choose "; }
-          { title = "^Authentication Required"; }
-          { title = "^Authenticate"; }
-          { title = "^Confirm"; }
-          { title = "^Warning"; }
-          { title = "^Error"; }
-        ];
-        excludes = [
-          { app-id = "^ghostty$"; }
-          { app-id = "^Alacritty$"; }
-        ];
-        open-floating = true;
-        max-width = 960;
-        max-height = 720;
-      }
     ];
 
     binds = {
