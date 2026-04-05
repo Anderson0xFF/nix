@@ -27,6 +27,8 @@
     steam
     grim
     slurp
+    mangohud
+    mako
     wl-clipboard
   ];
 
