@@ -1,4 +1,17 @@
-{ ... }:
+{ pkgs, ... }:
+let
+  notificationScript = pkgs.writeShellScript "waybar-mako-notification" ''
+    count=$(${pkgs.mako}/bin/makoctl list -j | ${pkgs.jq}/bin/jq -r 'length')
+    if [ "$count" -gt 0 ]; then
+      icon='<span font="Symbols Nerd Font Mono">󱅫</span>'
+      class="has-notifications"
+    else
+      icon='<span font="Symbols Nerd Font Mono">󰂚</span>'
+      class="none"
+    fi
+    ${pkgs.jq}/bin/jq -nc --arg text "$icon" --arg class "$class" '{text: $text, class: $class, alt: $class}'
+  '';
+in
 {
   programs.waybar = {
     enable = true;
@@ -11,8 +24,6 @@
         modules-left = [ "custom/nixos" "bluetooth" "niri/language" "network#speed" "custom/notification" ];
         modules-center = [ "clock" ];
         modules-right = [ "tray" "wireplumber" "disk" "cpu" "memory" "temperature" "network" "custom/power" ];
-
-
 
         "custom/nixos" = {
           format = "<span font='Symbols Nerd Font Mono'>󱄅</span>";
@@ -40,8 +51,13 @@
         };
 
         "custom/notification" = {
-          format = "<span font='Symbols Nerd Font Mono'>󰂚</span>";
+          exec = "${notificationScript}";
+          return-type = "json";
+          interval = 2;
+          escape = false;
           tooltip = false;
+          on-click = "makoctl dismiss";
+          on-click-right = "makoctl dismiss --all";
         };
 
         clock = {
@@ -215,6 +231,7 @@
       #network { color: #89dceb; }
       #custom-power { color: #f38ba8; }
       #custom-nixos { color: #89b4fa; }
+      #custom-notification.has-notifications { color: #f9e2af; }
 
       tooltip {
         background-color: @bg-tooltip;
