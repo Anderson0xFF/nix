@@ -29,6 +29,7 @@
     slurp
     mangohud
     mako
+    notify-desktop
     wl-clipboard
   ];
 
