@@ -14,6 +14,7 @@
     waypaper
     zed-editor
     discord
+    discordo
     spotify
     thunar
     tumbler
@@ -103,6 +104,5 @@
     # sobrescreve com --ozone-platform=wayland (flag mais forte).
     NIXOS_OZONE_WL = "1";
     ELECTRON_OZONE_PLATFORM_HINT = "wayland";
-
   };
 }
