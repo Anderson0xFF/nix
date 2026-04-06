@@ -11,7 +11,7 @@
   boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.kernelParams = [
     "amd_pstate=active"
-    "amdgpu.ppfeaturemask=0xffff7fff"  # Desativa GFXOFF — evita MODE1 reset no resume (RDNA2)
+    "amdgpu.ppfeaturemask=0xffffffff"  # Desativa GFXOFF — evita MODE1 reset no resume (RDNA2)
     "amdgpu.dcdebugmask=0x10"           # Melhora resume do display controller
   ];
 
