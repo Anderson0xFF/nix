@@ -247,7 +247,7 @@ in
         height = 2160;
         refresh = 239.991;
       };
-      variable-refresh-rate = true;
+      # variable-refresh-rate = true;
     };
   };
 }
