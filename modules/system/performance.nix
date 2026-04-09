@@ -25,16 +25,16 @@
     memoryPercent = 25;
   };
 
-  # EarlyOOM - previne travamento total por falta de RAM
-  services.earlyoom = {
-    enable = true;
-    freeMemThreshold = 5;
-    freeSwapThreshold = 5;
-    enableNotifications = true;
-    extraArgs = [
-      "--avoid" "(^|/)(code|code-oss|codium|electron)$"
-    ];
-  };
+  # # EarlyOOM - previne travamento total por falta de RAM
+  # services.earlyoom = {
+  #   enable = true;
+  #   freeMemThreshold = 5;
+  #   freeSwapThreshold = 5;
+  #   enableNotifications = true;
+  #   extraArgs = [
+  #     "--avoid" "(^|/)(code|code-oss|codium|electron)$"
+  #   ];
+  # };
 
   # /tmp na RAM - compilações mais rápidas
   boot.tmp = {
