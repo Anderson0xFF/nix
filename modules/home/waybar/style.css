@@ -82,9 +82,6 @@ window#waybar {
 #custom-mpris-play.paused {
   color: #f9e2af;
 }
-#custom-mpris-play.stopped {
-  color: #6c7086;
-}
 #custom-mpris-play:hover {
   background-color: rgba(203, 166, 247, 0.15);
 }
@@ -97,9 +94,6 @@ window#waybar {
 #custom-mpris-progress.paused {
   color: #6c7086;
 }
-#custom-mpris-progress.stopped {
-  padding: 0;
-}
 #custom-mpris-title {
   border-radius: 0 14px 14px 0;
   padding: 0 14px 0 6px;
@@ -109,15 +103,20 @@ window#waybar {
 #custom-mpris-title.paused {
   color: #9399b2;
 }
-#custom-mpris-title.stopped {
-  padding: 0;
-  background-color: transparent;
-}
+
+/* Sem mídia: colapsa totalmente (sem pill, sem padding, sem margin) */
 #custom-mpris-play.stopped,
-#custom-mpris-progress.stopped {
+#custom-mpris-progress.stopped,
+#custom-mpris-title.stopped,
+#custom-mpris-play.empty,
+#custom-mpris-progress.empty,
+#custom-mpris-title.empty {
   background-color: transparent;
-  margin: 0;
+  color: transparent;
   padding: 0;
+  margin: 0;
+  min-width: 0;
+  border-radius: 0;
 }
 
 /* Grupo centro - pill única */

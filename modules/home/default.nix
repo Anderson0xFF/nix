@@ -30,6 +30,7 @@
     mangohud
     notify-desktop
     wl-clipboard
+    wiremix
   ];
 
   gtk = {
