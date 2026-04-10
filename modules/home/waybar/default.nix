@@ -120,7 +120,7 @@ in
         };
 
         cpu = {
-          format = "<span font='Symbols Nerd Font Mono'></span> {usage}%";
+          format = "<span font='Symbols Nerd Font Mono'></span> {usage}%";
           tooltip = true;
         };
 

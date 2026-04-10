@@ -28,7 +28,6 @@
     grim
     slurp
     mangohud
-    mako
     notify-desktop
     wl-clipboard
   ];
@@ -51,6 +50,35 @@
     settings.main = {
       icon-theme = "Adwaita";
       terminal = "ghostty";
+    };
+  };
+
+  services.mako = {
+    enable = true;
+    settings = {
+      background-color = "#11111be6";
+      text-color = "#cdd6f4";
+      border-color = "#cba6f755";
+      progress-color = "over #cba6f755";
+
+      border-size = 1;
+      border-radius = 14;
+
+      font = "JetBrainsMono Nerd Font 12";
+
+      width = 360;
+      height = 120;
+      margin = 10;
+      padding = "14,18";
+      outer-margin = 10;
+
+      anchor = "top-right";
+      layer = "overlay";
+      default-timeout = 5000;
+      ignore-timeout = false;
+      max-visible = 5;
+      icons = true;
+      max-icon-size = 48;
     };
   };
 
