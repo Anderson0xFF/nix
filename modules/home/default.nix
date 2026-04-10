@@ -47,9 +47,37 @@
 
   programs.fuzzel = {
     enable = true;
-    settings.main = {
-      icon-theme = "Adwaita";
-      terminal = "ghostty";
+    settings = {
+      main = {
+        icon-theme = "Adwaita";
+        terminal = "ghostty";
+        font = "JetBrainsMono Nerd Font:size=13";
+        prompt = "\"  \"";
+        width = 40;
+        lines = 8;
+        horizontal-pad = 20;
+        vertical-pad = 16;
+        inner-pad = 10;
+        line-height = 24;
+        layer = "overlay";
+      };
+      colors = {
+        background = "11111be6";
+        text = "cdd6f4ff";
+        prompt = "cba6f7ff";
+        placeholder = "6c7086ff";
+        input = "cdd6f4ff";
+        match = "f9e2afff";
+        selection = "cba6f733";
+        selection-text = "cdd6f4ff";
+        selection-match = "f9e2afff";
+        counter = "9399b2ff";
+        border = "cba6f755";
+      };
+      border = {
+        width = 1;
+        radius = 14;
+      };
     };
   };
 
