@@ -5,21 +5,21 @@ let
   '';
 
   jq = "${pkgs.jq}/bin/jq";
-  awk = "${pkgs.gawk}/bin/awk";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
   makoctl = "${pkgs.mako}/bin/makoctl";
+  python = "${pkgs.python3}";
 
   notificationScript = mkScript "waybar-notification" ./scripts/notification.sh {
     inherit jq makoctl;
   };
-  mprisPlayScript = mkScript "waybar-mpris-play" ./scripts/mpris-play.sh {
-    inherit jq playerctl;
+  mprisPlayScript = mkScript "waybar-mpris-play" ./scripts/mpris-play.py {
+    inherit python playerctl;
   };
-  mprisProgressScript = mkScript "waybar-mpris-progress" ./scripts/mpris-progress.sh {
-    inherit jq awk playerctl;
+  mprisProgressScript = mkScript "waybar-mpris-progress" ./scripts/mpris-progress.py {
+    inherit python playerctl;
   };
-  mprisTitleScript = mkScript "waybar-mpris-title" ./scripts/mpris-title.sh {
-    inherit jq awk playerctl;
+  mprisTitleScript = mkScript "waybar-mpris-title" ./scripts/mpris-title.py {
+    inherit python playerctl;
   };
 in
 {
