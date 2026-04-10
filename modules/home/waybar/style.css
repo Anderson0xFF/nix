@@ -179,7 +179,7 @@ window#waybar {
 #disk { color: #cba6f7; }
 #network { color: #89dceb; }
 #custom-power { color: #f38ba8; }
-#custom-nixos { color: #89b4fa; }
+#custom-nixos { color: #00C2DF; }
 #custom-notification.has-notifications { color: #f9e2af; }
 
 tooltip {
