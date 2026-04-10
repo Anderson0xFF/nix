@@ -21,7 +21,7 @@ in
         position = "top";
         height = 48;
         spacing = 0;
-        modules-left = [ "custom/nixos" "bluetooth" "niri/language" "network#speed" "custom/notification" ];
+        modules-left = [ "custom/nixos" "bluetooth" "niri/language" "network#speed" "custom/notification" "mpris" ];
         modules-center = [ "clock" ];
         modules-right = [ "tray" "wireplumber" "disk" "cpu" "memory" "temperature" "network" "custom/power" ];
 
@@ -58,6 +58,34 @@ in
           tooltip = false;
           on-click = "makoctl dismiss";
           on-click-right = "makoctl dismiss --all";
+        };
+
+        mpris = {
+          format = "<span font='Symbols Nerd Font Mono'>{player_icon}</span>  {dynamic}";
+          format-paused = "<span font='Symbols Nerd Font Mono'>{status_icon}</span>  {dynamic}";
+          format-stopped = "";
+          player-icons = {
+            default = "󰝚";
+            spotify = "";
+            firefox = "󰈹";
+            chromium = "";
+            mpv = "";
+            vlc = "󰕼";
+          };
+          status-icons = {
+            playing = "";
+            paused = "";
+          };
+          dynamic-len = 40;
+          dynamic-priority = [ "title" "artist" ];
+          dynamic-separator = " · ";
+          interval = 1;
+          tooltip-format = "{player}: {status}\n{title}\n{artist}\n{album}";
+          on-click = "playerctl play-pause";
+          on-click-right = "playerctl next";
+          on-click-middle = "playerctl previous";
+          on-scroll-up = "playerctl next";
+          on-scroll-down = "playerctl previous";
         };
 
         clock = {
@@ -148,6 +176,7 @@ in
       #language,
       #network.speed,
       #custom-notification,
+      #mpris,
       #clock,
       #tray,
       #wireplumber,
@@ -162,12 +191,40 @@ in
         color: @fg;
       }
 
-      /* Grupo esquerda - pill única */
+      /* Grupo esquerda - transparente; cada subgrupo vira sua própria pill */
       .modules-left {
+        background-color: transparent;
+        margin: 5px 0 5px 6px;
+        padding: 0;
+      }
+
+      /* Pill principal da esquerda - abraça do nixos até a notificação */
+      #custom-nixos,
+      #bluetooth,
+      #language,
+      #network.speed,
+      #custom-notification {
+        background-color: @bg-pill;
+      }
+      #custom-nixos {
+        border-radius: 14px 0 0 14px;
+        padding-left: 14px;
+      }
+      #custom-notification {
+        border-radius: 0 14px 14px 0;
+        padding-right: 14px;
+      }
+
+      /* MPRIS - pill separada ao lado da ilha principal */
+      #mpris {
         background-color: @bg-pill;
         border-radius: 14px;
-        margin: 5px 0 5px 6px;
-        padding: 0 4px;
+        padding: 0 14px;
+        margin-left: 6px;
+        color: #f5c2e7;
+      }
+      #mpris.paused {
+        color: #9399b2;
       }
 
       /* Grupo centro - pill única */

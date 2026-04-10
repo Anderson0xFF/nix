@@ -223,13 +223,52 @@ in
       "Mod+Shift+Space".action = a.switch-layout "next";
 
       # Screenshot (grim + slurp — sem borrão)
-      "Print".action = a.spawn "sh" "-c" "grim - | wl-copy";
-      "Shift+Print".action = a.spawn "sh" "-c" "grim -g \"$(slurp)\" - | wl-copy";
-      "Mod+Print".action = a.spawn "sh" "-c" "grim ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png";
-      "Mod+Shift+Print".action = a.spawn "sh" "-c" "grim -g \"$(slurp)\" ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png";
+      # Print puro: área selecionada (padrão preferido). Shift+Print: tela inteira.
+      "Print".action = a.spawn "sh" "-c" "grim -g \"$(slurp)\" - | wl-copy";
+      "Shift+Print".action = a.spawn "sh" "-c" "grim - | wl-copy";
+      "Mod+Print".action = a.spawn "sh" "-c" "grim -g \"$(slurp)\" ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png";
+      "Mod+Shift+Print".action = a.spawn "sh" "-c" "grim ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png";
 
       # Overview
       "Mod+Tab".action = a.toggle-overview;
+
+      # Teclas multimídia — mídia (playerctl) e volume (wpctl)
+      "XF86AudioPlay" = {
+        action = a.spawn "playerctl" "play-pause";
+        allow-when-locked = true;
+      };
+      "XF86AudioPause" = {
+        action = a.spawn "playerctl" "play-pause";
+        allow-when-locked = true;
+      };
+      "XF86AudioStop" = {
+        action = a.spawn "playerctl" "stop";
+        allow-when-locked = true;
+      };
+      "XF86AudioNext" = {
+        action = a.spawn "playerctl" "next";
+        allow-when-locked = true;
+      };
+      "XF86AudioPrev" = {
+        action = a.spawn "playerctl" "previous";
+        allow-when-locked = true;
+      };
+      "XF86AudioRaiseVolume" = {
+        action = a.spawn "wpctl" "set-volume" "-l" "1.5" "@DEFAULT_AUDIO_SINK@" "5%+";
+        allow-when-locked = true;
+      };
+      "XF86AudioLowerVolume" = {
+        action = a.spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-";
+        allow-when-locked = true;
+      };
+      "XF86AudioMute" = {
+        action = a.spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle";
+        allow-when-locked = true;
+      };
+      "XF86AudioMicMute" = {
+        action = a.spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle";
+        allow-when-locked = true;
+      };
     };
 
     gestures = {
