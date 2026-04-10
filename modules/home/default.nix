@@ -11,6 +11,9 @@
     fastfetch
     ghostty
     swww
+    eza
+    bat
+    yazi
     waypaper
     zed-editor
     discord
