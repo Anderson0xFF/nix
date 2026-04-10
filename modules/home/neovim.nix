@@ -23,7 +23,7 @@
       # LSPs
       lua-language-server
       nil
-      nodePackages.typescript-language-server
+      typescript-language-server
     ];
 
     extraPlugins = ''
