@@ -10,7 +10,7 @@
     btop
     fastfetch
     ghostty
-    swww
+    awww
     eza
     bat
     yazi

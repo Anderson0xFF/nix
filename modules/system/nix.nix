@@ -12,4 +12,8 @@
 
   # Habilita flakes e o comando nix
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  # Aumenta o buffer de download (padrão 64MB) para evitar avisos
+  # "download buffer is full" ao baixar muitos store paths em paralelo
+  nix.settings.download-buffer-size = 524288000; # 500 MB
 }

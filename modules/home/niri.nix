@@ -13,7 +13,7 @@ in
     spawn-at-startup = [
       { command = [ "waybar" ]; }
       # { command = [ "xwayland-satellite" ]; }  # Desabilitado: causa crash de apps X11 ao desligar monitor
-      { command = [ "swww-daemon" ]; }
+      { command = [ "awww-daemon" ]; }
     ];
 
     layout = {
