@@ -1,0 +1,191 @@
+/* Cores principais - altere aqui para mudar o tema */
+@define-color bg-pill rgba(17, 17, 27, 0.90); /* fundo das pills */
+@define-color fg #cdd6f4;                     /* texto padrão */
+@define-color bg-tooltip #1e1e2e;             /* fundo dos tooltips */
+
+* {
+  font-family: "JetBrainsMono Nerd Font", "JetBrainsMono NF", "Symbols Nerd Font Mono", monospace;
+  font-size: 17px;
+  min-height: 0;
+}
+
+window#waybar {
+  background-color: transparent;
+  color: @fg;
+  border: none;
+}
+
+/* Todos os módulos - sem background individual */
+#custom-nixos,
+#bluetooth,
+#language,
+#network.speed,
+#custom-notification,
+#custom-mpris-play,
+#custom-mpris-progress,
+#custom-mpris-title,
+#clock,
+#tray,
+#wireplumber,
+#disk,
+#cpu,
+#memory,
+#temperature,
+#network,
+#custom-power {
+  background-color: transparent;
+  padding: 0 8px;
+  color: @fg;
+}
+
+/* Grupo esquerda - transparente; cada subgrupo vira sua própria pill */
+.modules-left {
+  background-color: transparent;
+  margin: 5px 0 5px 6px;
+  padding: 0;
+}
+
+/* Pill principal da esquerda - abraça do nixos até a notificação */
+#custom-nixos,
+#bluetooth,
+#language,
+#network.speed,
+#custom-notification {
+  background-color: @bg-pill;
+}
+#custom-nixos {
+  border-radius: 14px 0 0 14px;
+  padding-left: 14px;
+}
+#custom-notification {
+  border-radius: 0 14px 14px 0;
+  padding-right: 14px;
+}
+
+/* MPRIS - pill contínua com play, progresso e título */
+#custom-mpris-play,
+#custom-mpris-progress,
+#custom-mpris-title {
+  background-color: @bg-pill;
+  color: #f5c2e7;
+}
+#custom-mpris-play {
+  border-radius: 14px 0 0 14px;
+  padding: 0 10px 0 14px;
+  margin-left: 6px;
+  font-size: 15px;
+  transition: color 180ms ease, background-color 180ms ease;
+}
+#custom-mpris-play.playing {
+  color: #a6e3a1;
+}
+#custom-mpris-play.paused {
+  color: #f9e2af;
+}
+#custom-mpris-play.stopped {
+  color: #6c7086;
+}
+#custom-mpris-play:hover {
+  background-color: rgba(203, 166, 247, 0.15);
+}
+#custom-mpris-progress {
+  padding: 0 10px;
+  color: #cba6f7;
+  font-size: 15px;
+  letter-spacing: -1px;
+}
+#custom-mpris-progress.paused {
+  color: #6c7086;
+}
+#custom-mpris-progress.stopped {
+  padding: 0;
+}
+#custom-mpris-title {
+  border-radius: 0 14px 14px 0;
+  padding: 0 14px 0 6px;
+  color: #f5c2e7;
+  font-weight: 500;
+}
+#custom-mpris-title.paused {
+  color: #9399b2;
+}
+#custom-mpris-title.stopped {
+  padding: 0;
+  background-color: transparent;
+}
+#custom-mpris-play.stopped,
+#custom-mpris-progress.stopped {
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+/* Grupo centro - pill única */
+.modules-center {
+  background-color: @bg-pill;
+  border-radius: 14px;
+  margin: 5px 0;
+  padding: 0 4px;
+}
+
+/* Grupo direita - pill única com tray separado */
+.modules-right {
+  background-color: transparent;
+  margin: 5px 6px 5px 0;
+  padding: 0;
+}
+
+/* Tray - pill separada */
+#tray {
+  background-color: @bg-pill;
+  border-radius: 14px;
+  padding: 0 10px;
+  margin-right: 6px;
+}
+
+/* Demais módulos do right - pill única */
+#wireplumber,
+#disk,
+#cpu,
+#memory,
+#temperature,
+#network,
+#custom-power {
+  background-color: @bg-pill;
+  padding: 0 12px;
+}
+
+#wireplumber {
+  border-radius: 14px 0 0 14px;
+  padding-left: 14px;
+}
+
+#custom-power {
+  border-radius: 0 14px 14px 0;
+  padding-right: 14px;
+}
+
+#clock {
+  font-weight: bold;
+  padding: 0 10px;
+}
+
+#tray { color: #9399b2; }
+#wireplumber { color: #f5c2e7; }
+#wireplumber.muted { color: #6c7086; }
+#cpu { color: #a6e3a1; }
+#memory { color: #89b4fa; }
+#temperature { color: #fab387; }
+#temperature.critical { color: #f38ba8; }
+#disk { color: #cba6f7; }
+#network { color: #89dceb; }
+#custom-power { color: #f38ba8; }
+#custom-nixos { color: #89b4fa; }
+#custom-notification.has-notifications { color: #f9e2af; }
+
+tooltip {
+  background-color: @bg-tooltip;
+  border: 1px solid @bg-pill;
+  border-radius: 8px;
+  color: @fg;
+}
