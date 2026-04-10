@@ -8,7 +8,7 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages;
   boot.kernelParams = [
     "amd_pstate=active"
     "amdgpu.ppfeaturemask=0xffffffff"  # Desativa GFXOFF — evita MODE1 reset no resume (RDNA2)
