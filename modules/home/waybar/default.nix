@@ -12,6 +12,9 @@ let
   notificationScript = mkScript "waybar-notification" ./scripts/notification.sh {
     inherit jq makoctl;
   };
+  distroScript = mkScript "waybar-distro" ./scripts/distro.py {
+    inherit python;
+  };
   mprisPlayScript = mkScript "waybar-mpris-play" ./scripts/mpris-play.py {
     inherit python playerctl;
   };
@@ -37,7 +40,7 @@ in
 
         "custom/nixos" = {
           format = "{}";
-          exec = ''printf '{"text":"<span font=\"Symbols Nerd Font Mono\">󱄅</span>","tooltip":"NixOS %s\nKernel %s"}' "$(nixos-version)" "$(uname -r)"'';
+          exec = "${distroScript}";
           return-type = "json";
           interval = 3600;
         };
