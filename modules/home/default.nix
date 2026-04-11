@@ -55,7 +55,7 @@
 
     themes.catppuccin-pill = {
       style = ''
-        @define-color window_bg_color rgba(17, 17, 27, 0.86);
+        @define-color window_bg_color rgba(17, 17, 27, 1.0);
         @define-color entry_bg_color rgba(30, 30, 46, 0.6);
         @define-color accent_bg_color #cba6f7;
         @define-color theme_fg_color #cdd6f4;
