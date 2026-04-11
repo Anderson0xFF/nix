@@ -1,0 +1,131 @@
+// Tema catppuccin-pill do Walker — espelha os tokens visuais da waybar.
+// sassc compila este arquivo em build time; ver ./default.nix.
+//
+// Nota: construções GTK4-only (alpha(), -gtk-icon-size, child:selected, ...)
+// passam direto pelo sassc como texto. Elas não são CSS padrão — ignore
+// qualquer aviso do linter sobre "unknown property".
+
+// ---------- Tokens ----------
+$window-bg:   rgba(17, 17, 27, 1.0);
+$entry-bg:    rgba(30, 30, 46, 1.0);
+$accent:      #cba6f7;
+$fg:          #cdd6f4;
+$subtext:     #9399b2;
+$error-bg:    #f38ba8;
+$error-fg:    #11111b;
+
+$radius:      8px;
+$pad:         10px;
+$pad-edge:    14px;
+
+// ---------- Reset global ----------
+* {
+  all: unset;
+  font-family: "Inter", "Adwaita Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  -gtk-dpi: 96;
+}
+
+.normal-icons { -gtk-icon-size: 24px; }
+.large-icons  { -gtk-icon-size: 32px; }
+scrollbar     { opacity: 0; }
+
+// ---------- Container principal ----------
+.box-wrapper {
+  background: $window-bg;
+  padding: $pad $pad-edge;
+  border-radius: $radius;
+  border: 1px solid #{"alpha(#{$accent}, 0.33)"};
+  color: $fg;
+}
+
+// ---------- Campo de busca ----------
+.search-container {
+  border-radius: $radius;
+}
+
+.input {
+  caret-color: $fg;
+  background: $entry-bg;
+  padding: 8px 12px;
+  border-radius: $radius;
+  color: $fg;
+  font-size: 14px;
+
+  placeholder { opacity: 0.5; }
+}
+
+// ---------- Lista de resultados ----------
+.list {
+  color: $fg;
+}
+
+.item-box {
+  border-radius: $radius;
+  padding: 8px $pad;
+  min-height: 40px;
+}
+
+child:selected .item-box,
+row:selected .item-box {
+  background: #{"alpha(#{$accent}, 0.20)"};
+}
+
+.item-text {
+  font-weight: 500;
+  font-size: 14px;
+  color: $fg;
+}
+
+.item-subtext {
+  font-size: 12px;
+  font-weight: 400;
+  color: $subtext;
+}
+
+.item-quick-activation {
+  background: #{"alpha(#{$accent}, 0.25)"};
+  border-radius: 5px;
+  padding: 4px 8px;
+}
+
+// ---------- Preview ----------
+.preview {
+  border: 1px solid #{"alpha(#{$accent}, 0.25)"};
+  border-radius: $radius;
+  color: $fg;
+
+  .large-icons { -gtk-icon-size: 64px; }
+}
+
+// ---------- Rodapé de atalhos ----------
+.keybinds {
+  padding-top: 8px;
+  border-top: 1px solid #{"alpha(#{$accent}, 0.15)"};
+  font-size: 12px;
+  color: $subtext;
+}
+
+.keybind-bind {
+  text-transform: lowercase;
+  opacity: 0.5;
+}
+
+.keybind-label {
+  padding: 2px 4px;
+  border-radius: 4px;
+  border: 1px solid #{"alpha(#{$fg}, 0.5)"};
+}
+
+// ---------- Erro ----------
+.error {
+  padding: $pad;
+  background: $error-bg;
+  color: $error-fg;
+  border-radius: $radius;
+}
+
+// ---------- Providers específicos ----------
+.calc .item-text      { font-size: 24px; }
+.symbols .item-image  { font-size: 24px; }
