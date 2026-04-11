@@ -14,6 +14,7 @@ in
       { command = [ "waybar" ]; }
       # { command = [ "xwayland-satellite" ]; }  # Desabilitado: causa crash de apps X11 ao desligar monitor
       { command = [ "awww-daemon" ]; }
+      { command = [ "swayosd-server" ]; }
     ];
 
     layout = {
@@ -246,27 +247,35 @@ in
         allow-when-locked = true;
       };
       "XF86AudioNext" = {
-        action = a.spawn "playerctl" "next";
+        action = a.spawn "music-osd" "next";
         allow-when-locked = true;
       };
       "XF86AudioPrev" = {
-        action = a.spawn "playerctl" "previous";
+        action = a.spawn "music-osd" "previous";
         allow-when-locked = true;
       };
       "XF86AudioRaiseVolume" = {
-        action = a.spawn "wpctl" "set-volume" "-l" "1.5" "@DEFAULT_AUDIO_SINK@" "5%+";
+        action = a.spawn "swayosd-client" "--output-volume" "raise" "--max-volume" "150";
         allow-when-locked = true;
       };
       "XF86AudioLowerVolume" = {
-        action = a.spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-";
+        action = a.spawn "swayosd-client" "--output-volume" "lower";
         allow-when-locked = true;
       };
       "XF86AudioMute" = {
-        action = a.spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle";
+        action = a.spawn "swayosd-client" "--output-volume" "mute-toggle";
         allow-when-locked = true;
       };
       "XF86AudioMicMute" = {
-        action = a.spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle";
+        action = a.spawn "swayosd-client" "--input-volume" "mute-toggle";
+        allow-when-locked = true;
+      };
+      "XF86MonBrightnessUp" = {
+        action = a.spawn "brightness-osd" "up";
+        allow-when-locked = true;
+      };
+      "XF86MonBrightnessDown" = {
+        action = a.spawn "brightness-osd" "down";
         allow-when-locked = true;
       };
     };

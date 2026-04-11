@@ -1,4 +1,40 @@
 { config, lib, pkgs, ... }:
+let
+  brightnessOsd = pkgs.writers.writePython3Bin "brightness-osd" {
+    flakeIgnore = [ "E501" ];
+  } (builtins.readFile ./scripts/brightness_osd.py);
+
+  musicOsd = pkgs.writers.writePython3Bin "music-osd" {
+    flakeIgnore = [ "E501" ];
+  } (builtins.readFile ./scripts/music_osd.py);
+
+  brightnessOsdWrapped = pkgs.symlinkJoin {
+    name = "brightness-osd";
+    paths = [ brightnessOsd ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/brightness-osd \
+        --prefix PATH : ${lib.makeBinPath [
+          pkgs.swayosd
+          pkgs.ddcutil
+          pkgs.procps
+        ]}
+    '';
+  };
+
+  musicOsdWrapped = pkgs.symlinkJoin {
+    name = "music-osd";
+    paths = [ musicOsd ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/music-osd \
+        --prefix PATH : ${lib.makeBinPath [
+          pkgs.playerctl
+          pkgs.libnotify
+        ]}
+    '';
+  };
+in
 {
   home.username = "alynx";
   home.homeDirectory = "/home/alynx";
@@ -34,7 +70,10 @@
     notify-desktop
     wl-clipboard
     wiremix
-  ];
+    swayosd
+    brightnessctl
+    playerctl
+  ] ++ [ brightnessOsdWrapped musicOsdWrapped ];
 
   gtk = {
     enable = true;
