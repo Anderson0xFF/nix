@@ -278,6 +278,8 @@ in
         action = a.spawn "brightness-osd" "down";
         allow-when-locked = true;
       };
+      "Mod+F6".action = a.spawn "brightness-osd" "up";
+      "Mod+F5".action = a.spawn "brightness-osd" "down";
     };
 
     gestures = {
