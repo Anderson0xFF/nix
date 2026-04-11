@@ -4,6 +4,7 @@
 
   environment.systemPackages = with pkgs; [
     ddcutil
+    ddcui
   ];
 
   users.users.alynx.extraGroups = [ "i2c" ];
