@@ -23,9 +23,14 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    walker = {
+      url = "github:abenz1267/walker";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, niri-flake, nix4nvchad, rust-overlay, ... }:
+  outputs = { self, nixpkgs, home-manager, niri-flake, nix4nvchad, rust-overlay, walker, ... }:
   let
     commonModules = [
       { nixpkgs.overlays = [ rust-overlay.overlays.default ]; }
@@ -36,6 +41,7 @@
         home-manager.useUserPackages = true;
         home-manager.backupFileExtension = "bak";
         home-manager.extraSpecialArgs = { inherit nix4nvchad; };
+        home-manager.sharedModules = [ walker.homeManagerModules.default ];
         home-manager.users.alynx = import ./home.nix;
       }
     ];

@@ -49,91 +49,118 @@
     };
   };
 
-  programs.anyrun = {
+  programs.walker = {
     enable = true;
-    config = {
-      plugins = [
-        "${pkgs.anyrun}/lib/libapplications.so"
-        "${pkgs.anyrun}/lib/libsymbols.so"
-        "${pkgs.anyrun}/lib/librink.so"
-      ];
-      width.absolute = 600;
-      y.fraction = 0.3;
-      hidePluginInfo = true;
-      closeOnClick = true;
-      showResultsImmediately = true;
-      ignoreExclusiveZones = false;
-      layer = "overlay";
+    runAsService = true;
+
+    themes.catppuccin-pill = {
+      style = ''
+        @define-color window_bg_color rgba(17, 17, 27, 0.86);
+        @define-color entry_bg_color rgba(30, 30, 46, 0.6);
+        @define-color accent_bg_color #cba6f7;
+        @define-color theme_fg_color #cdd6f4;
+        @define-color subtext_color #9399b2;
+        @define-color error_bg_color #f38ba8;
+        @define-color error_fg_color #11111b;
+
+        * {
+          all: unset;
+          font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font Mono", monospace;
+          font-size: 15px;
+        }
+
+        .normal-icons { -gtk-icon-size: 16px; }
+        .large-icons  { -gtk-icon-size: 32px; }
+        scrollbar { opacity: 0; }
+
+        .box-wrapper {
+          background: @window_bg_color;
+          padding: 10px 14px;
+          border-radius: 8px;
+          border: 1px solid alpha(@accent_bg_color, 0.33);
+          color: @theme_fg_color;
+        }
+
+        .search-container {
+          border-radius: 8px;
+        }
+
+        .input {
+          caret-color: @theme_fg_color;
+          background: @entry_bg_color;
+          padding: 6px 10px;
+          border-radius: 8px;
+          color: @theme_fg_color;
+        }
+
+        .input placeholder { opacity: 0.5; }
+
+        .list {
+          color: @theme_fg_color;
+        }
+
+        .item-box {
+          border-radius: 8px;
+          padding: 6px 10px;
+        }
+
+        child:selected .item-box,
+        row:selected .item-box {
+          background: alpha(@accent_bg_color, 0.20);
+        }
+
+        .item-subtext {
+          font-size: 12px;
+          color: @subtext_color;
+        }
+
+        .item-quick-activation {
+          background: alpha(@accent_bg_color, 0.25);
+          border-radius: 5px;
+          padding: 4px 8px;
+        }
+
+        .preview {
+          border: 1px solid alpha(@accent_bg_color, 0.25);
+          border-radius: 8px;
+          color: @theme_fg_color;
+        }
+
+        .preview .large-icons { -gtk-icon-size: 64px; }
+
+        .keybinds {
+          padding-top: 8px;
+          border-top: 1px solid alpha(@accent_bg_color, 0.15);
+          font-size: 12px;
+          color: @subtext_color;
+        }
+
+        .keybind-bind {
+          text-transform: lowercase;
+          opacity: 0.5;
+        }
+
+        .keybind-label {
+          padding: 2px 4px;
+          border-radius: 4px;
+          border: 1px solid alpha(@theme_fg_color, 0.5);
+        }
+
+        .error {
+          padding: 10px;
+          background: @error_bg_color;
+          color: @error_fg_color;
+          border-radius: 8px;
+        }
+
+        .calc .item-text { font-size: 24px; }
+        .symbols .item-image { font-size: 24px; }
+      '';
     };
-    extraCss = ''
-      @define-color accent #cba6f7;
-      @define-color bg-pill rgba(17, 17, 27, 0.86);
-      @define-color fg-color #cdd6f4;
-      @define-color desc-color #9399b2;
-      @define-color entry-bg rgba(30, 30, 46, 0.6);
 
-      window {
-        background: transparent;
-      }
-
-      box.main {
-        padding: 10px;
-        margin: 10px;
-        border-radius: 8px;
-        border: 1px solid alpha(@accent, 0.33);
-        background-color: @bg-pill;
-        color: @fg-color;
-        font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font Mono", monospace;
-        font-size: 15px;
-      }
-
-      text {
-        min-height: 32px;
-        padding: 6px 10px;
-        border-radius: 8px;
-        background-color: @entry-bg;
-        color: @fg-color;
-      }
-
-      .matches {
-        background-color: transparent;
-        border-radius: 8px;
-        margin-top: 6px;
-      }
-
-      list.plugin {
-        background-color: transparent;
-      }
-
-      box.plugin:first-child {
-        margin-top: 4px;
-      }
-
-      label.match {
-        color: @fg-color;
-        padding: 4px 8px;
-      }
-
-      label.match.description {
-        font-size: 11px;
-        color: @desc-color;
-      }
-
-      label.plugin.info {
-        font-size: 13px;
-        color: @desc-color;
-      }
-
-      .match {
-        background: transparent;
-        border-radius: 6px;
-      }
-
-      .match:selected {
-        background: alpha(@accent, 0.20);
-        border-left: 3px solid @accent;
-      }
-    '';
+    config = {
+      theme = "catppuccin-pill";
+    };
   };
 
   services.mako = {

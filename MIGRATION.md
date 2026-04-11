@@ -321,35 +321,45 @@ ELECTRON_OZONE_PLATFORM_HINT=wayland
 # Serif: Noto Serif
 ```
 
-### Anyrun (launcher)
+### Walker (launcher)
 
-Launcher em Rust + GTK4 para Wayland. Instalar via pacote nativo da distro (`pacman -S anyrun`, AUR `anyrun-git`, ou `cargo install` a partir do repositório oficial).
+Launcher em Rust + GTK4 para Wayland (projeto [abenz1267/walker](https://github.com/abenz1267/walker)). Instalar via pacote nativo da distro — `pacman -S walker` / AUR `walker-bin` / `cargo install` a partir do repositório oficial. O walker depende também do daemon `elephant`, que fornece os providers (desktop apps, calc, symbols, etc.); normalmente é empacotado junto.
 
-Criar `~/.config/anyrun/config.ron` (ajustar os caminhos dos plugins conforme o prefixo em que o anyrun foi instalado — tipicamente `/usr/lib/anyrun/` ou `$HOME/.cargo/…/target/release/`):
+Config em TOML, tema em GTK4 CSS. A estrutura esperada é:
 
-```ron
-Config(
-  x: Fraction(0.5),
-  y: Fraction(0.3),
-  width: Absolute(600),
-  height: Absolute(0),
-  margin: 0,
-  hide_icons: false,
-  ignore_exclusive_zones: false,
-  layer: Overlay,
-  hide_plugin_info: true,
-  close_on_click: true,
-  show_results_immediately: true,
-  max_entries: None,
-  plugins: [
-    "/usr/lib/anyrun/libapplications.so",
-    "/usr/lib/anyrun/libsymbols.so",
-    "/usr/lib/anyrun/librink.so",
-  ],
-)
+```
+~/.config/walker/
+├── config.toml        # opcional — sobrescreve defaults
+└── themes/
+    └── catppuccin-pill/
+        ├── style.css  # copiar o bloco themes.catppuccin-pill.style de modules/home/default.nix
+        └── layout.xml # opcional — só se quiser mudar a árvore de widgets
 ```
 
-Criar `~/.config/anyrun/style.css` com o mesmo CSS usado no módulo NixOS (cores do tema das ilhas da waybar, JetBrainsMono Nerd Font, border-radius 8px). Copiar o bloco `extraCss` de `modules/home/default.nix`.
+Conteúdo mínimo de `~/.config/walker/config.toml` para ativar o tema:
+
+```toml
+theme = "catppuccin-pill"
+```
+
+Para que o launcher abra instantaneamente, rodar o walker como serviço do usuário (equivalente ao `runAsService = true` do NixOS):
+
+```ini
+# ~/.config/systemd/user/walker.service
+[Unit]
+Description=Walker launcher (daemon mode)
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=%h/.local/bin/walker --gapplication-service
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
+```
+
+Depois: `systemctl --user enable --now walker.service`. O atalho do compositor (`Mod+D`) apenas invoca `walker` — o processo em daemon responde instantaneamente.
 
 ---
 
