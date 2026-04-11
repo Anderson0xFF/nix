@@ -4,6 +4,9 @@
     enable = true;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
+    shellAliases = {
+      explorer = "yazi";
+    };
     initContent = ''
       bindkey -e
       bindkey "^[[3~" delete-char

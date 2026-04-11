@@ -37,7 +37,9 @@ in
 
         "custom/nixos" = {
           format = "<span font='Symbols Nerd Font Mono'>󱄅</span>";
-          tooltip = false;
+          exec = "printf '{\"text\":\"\",\"tooltip\":\"NixOS %s\\nKernel %s\"}' \"$(nixos-version)\" \"$(uname -r)\"";
+          return-type = "json";
+          interval = 3600;
         };
 
         bluetooth = {
@@ -52,6 +54,7 @@ in
 
         "niri/language" = {
           format = "{}";
+          on-click = "niri msg action switch-layout next";
         };
 
         "network#speed" = {
