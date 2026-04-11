@@ -49,40 +49,73 @@
     };
   };
 
-  programs.fuzzel = {
+  programs.anyrun = {
     enable = true;
-    settings = {
-      main = {
-        icon-theme = "Adwaita";
-        terminal = "ghostty";
-        font = "JetBrainsMono Nerd Font:size=13";
-        prompt = "\"  \"";
-        width = 40;
-        lines = 8;
-        horizontal-pad = 20;
-        vertical-pad = 16;
-        inner-pad = 10;
-        line-height = 24;
-        layer = "overlay";
-      };
-      colors = {
-        background = "11111be6";
-        text = "cdd6f4ff";
-        prompt = "cba6f7ff";
-        placeholder = "6c7086ff";
-        input = "cdd6f4ff";
-        match = "f9e2afff";
-        selection = "cba6f733";
-        selection-text = "cdd6f4ff";
-        selection-match = "f9e2afff";
-        counter = "9399b2ff";
-        border = "cba6f755";
-      };
-      border = {
-        width = 1;
-        radius = 14;
-      };
+    config = {
+      plugins = [
+        "${pkgs.anyrun}/lib/libapplications.so"
+        "${pkgs.anyrun}/lib/libsymbols.so"
+        "${pkgs.anyrun}/lib/librink.so"
+      ];
+      width.absolute = 600;
+      y.fraction = 0.3;
+      hidePluginInfo = true;
+      closeOnClick = true;
+      showResultsImmediately = true;
+      ignoreExclusiveZones = false;
+      layer = "overlay";
     };
+    extraCss = ''
+      * {
+        all: unset;
+        font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font Mono", monospace;
+        font-size: 15px;
+      }
+
+      #window {
+        background: transparent;
+      }
+
+      box#main {
+        background: rgba(17, 17, 27, 0.86);
+        border: 1px solid rgba(203, 166, 247, 0.33);
+        border-radius: 8px;
+        padding: 10px 14px;
+        color: #cdd6f4;
+      }
+
+      #entry {
+        background: rgba(30, 30, 46, 0.6);
+        border-radius: 8px;
+        padding: 6px 10px;
+        color: #cdd6f4;
+      }
+
+      #entry image {
+        margin-right: 10px;
+      }
+
+      #match {
+        background: transparent;
+        border-radius: 8px;
+        padding: 6px 10px;
+        color: #cdd6f4;
+      }
+
+      #match:selected {
+        background: rgba(203, 166, 247, 0.20);
+        color: #cdd6f4;
+      }
+
+      #match image {
+        margin-right: 10px;
+      }
+
+      #plugin {
+        color: #9399b2;
+        padding: 4px 10px;
+      }
+    '';
   };
 
   services.mako = {

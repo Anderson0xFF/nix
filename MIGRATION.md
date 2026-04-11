@@ -321,14 +321,35 @@ ELECTRON_OZONE_PLATFORM_HINT=wayland
 # Serif: Noto Serif
 ```
 
-### Fuzzel (launcher)
+### Anyrun (launcher)
 
-Criar `~/.config/fuzzel/fuzzel.ini`:
-```ini
-[main]
-icon-theme=Adwaita
-terminal=ghostty
+Launcher em Rust + GTK4 para Wayland. Instalar via pacote nativo da distro (`pacman -S anyrun`, AUR `anyrun-git`, ou `cargo install` a partir do repositório oficial).
+
+Criar `~/.config/anyrun/config.ron` (ajustar os caminhos dos plugins conforme o prefixo em que o anyrun foi instalado — tipicamente `/usr/lib/anyrun/` ou `$HOME/.cargo/…/target/release/`):
+
+```ron
+Config(
+  x: Fraction(0.5),
+  y: Fraction(0.3),
+  width: Absolute(600),
+  height: Absolute(0),
+  margin: 0,
+  hide_icons: false,
+  ignore_exclusive_zones: false,
+  layer: Overlay,
+  hide_plugin_info: true,
+  close_on_click: true,
+  show_results_immediately: true,
+  max_entries: None,
+  plugins: [
+    "/usr/lib/anyrun/libapplications.so",
+    "/usr/lib/anyrun/libsymbols.so",
+    "/usr/lib/anyrun/librink.so",
+  ],
+)
 ```
+
+Criar `~/.config/anyrun/style.css` com o mesmo CSS usado no módulo NixOS (cores do tema das ilhas da waybar, JetBrainsMono Nerd Font, border-radius 8px). Copiar o bloco `extraCss` de `modules/home/default.nix`.
 
 ---
 

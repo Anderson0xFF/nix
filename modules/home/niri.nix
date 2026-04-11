@@ -157,7 +157,7 @@ in
     binds = {
       # Terminal e launcher
       "Mod+Return".action = a.spawn "ghostty";
-      "Mod+D".action = a.spawn "fuzzel";
+      "Mod+D".action = a.spawn "anyrun";
 
       # Niri
       "Mod+Shift+Slash".action = a.show-hotkey-overlay;
