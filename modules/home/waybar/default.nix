@@ -36,8 +36,8 @@ in
         modules-right = [ "tray" "wireplumber" "disk" "cpu" "memory" "temperature" "network" "custom/power" ];
 
         "custom/nixos" = {
-          format = "<span font='Symbols Nerd Font Mono'>󱄅</span>";
-          exec = "printf '{\"text\":\"\",\"tooltip\":\"NixOS %s\\nKernel %s\"}' \"$(nixos-version)\" \"$(uname -r)\"";
+          format = "{}";
+          exec = ''printf '{"text":"<span font=\"Symbols Nerd Font Mono\">󱄅</span>","tooltip":"NixOS %s\nKernel %s"}' "$(nixos-version)" "$(uname -r)"'';
           return-type = "json";
           interval = 3600;
         };
