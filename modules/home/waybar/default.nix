@@ -8,6 +8,9 @@ let
   playerctl = "${pkgs.playerctl}/bin/playerctl";
   makoctl = "${pkgs.mako}/bin/makoctl";
   python = "${pkgs.python3}";
+  ddcutil = "${pkgs.ddcutil}/bin/ddcutil";
+  ddcui = "${pkgs.ddcui}/bin/ddcui";
+  awk = "${pkgs.gawk}/bin/awk";
 
   notificationScript = mkScript "waybar-notification" ./scripts/notification.sh {
     inherit jq makoctl;
@@ -24,6 +27,9 @@ let
   mprisTitleScript = mkScript "waybar-mpris-title" ./scripts/mpris-title.py {
     inherit python playerctl;
   };
+  brightnessScript = mkScript "waybar-brightness" ./scripts/brightness.sh {
+    inherit ddcutil awk;
+  };
 in
 {
   programs.waybar = {
@@ -36,7 +42,7 @@ in
         spacing = 0;
         modules-left = [ "custom/nixos" "bluetooth" "niri/language" "network#speed" "custom/notification" "custom/mpris-play" "custom/mpris-progress" "custom/mpris-title" ];
         modules-center = [ "clock" ];
-        modules-right = [ "tray" "wireplumber" "disk" "cpu" "memory" "temperature" "network" "custom/power" ];
+        modules-right = [ "tray" "disk" "cpu" "memory" "custom/brightness" "wireplumber" "pulseaudio#microphone" "network" "temperature" "custom/power" ];
 
         "custom/nixos" = {
           format = "{}";
@@ -109,7 +115,7 @@ in
         };
 
         wireplumber = {
-          format = "<span font='Symbols Nerd Font Mono'>{icon}</span> {volume}%";
+          format = "<span font='Symbols Nerd Font Mono'>{icon}</span>";
           format-muted = "<span font='Symbols Nerd Font Mono'>󰝟</span>";
           format-icons = [ "󰕿" "󰖀" "󰕾" ];
           on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
@@ -120,37 +126,62 @@ in
           tooltip-format = "{node_name}: {volume}%";
         };
 
+        "custom/brightness" = {
+          exec = "${brightnessScript}";
+          return-type = "json";
+          interval = 5;
+          signal = 8;
+          on-scroll-up = "${ddcutil} setvcp 10 + 10 && pkill -RTMIN+8 waybar";
+          on-scroll-down = "${ddcutil} setvcp 10 - 10 && pkill -RTMIN+8 waybar";
+          on-click = "${ddcui}";
+          tooltip = true;
+        };
+
+        "pulseaudio#microphone" = {
+          format = "<span font='Symbols Nerd Font Mono'>{format_source}</span>";
+          format-source = "󰍬";
+          format-source-muted = "󰍭";
+          tooltip-format = "Mic: {source_volume}% ({source_desc})";
+          on-click = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+          on-scroll-up = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+";
+          on-scroll-down = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-";
+          scroll-step = 5;
+        };
+
         tray = {
           icon-size = 16;
           spacing = 8;
         };
 
         cpu = {
-          format = "<span font='Symbols Nerd Font Mono'></span> {usage}%";
+          format = "<span font='Symbols Nerd Font Mono'></span>";
           tooltip = true;
+          tooltip-format = "CPU: {usage}%";
         };
 
         memory = {
-          format = "<span font='Symbols Nerd Font Mono'>󰍛</span> {}%";
+          format = "<span font='Symbols Nerd Font Mono'>󰍛</span>";
+          tooltip-format = "RAM: {used:0.1f} GiB / {total:0.1f} GiB ({percentage}%)";
         };
 
         temperature = {
           hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
           critical-threshold = 75;
-          "format" = "{temperatureC}°C {icon}";
-          "format-critical" = "{temperatureC}°C {icon}";
-          "format-icons" = ["" "" ""];
+          "format" = "<span font='Symbols Nerd Font Mono'>{icon}</span>";
+          "format-critical" = "<span font='Symbols Nerd Font Mono'>{icon}</span>";
+          "format-icons" = [ "" "" "" "" ];
+          tooltip-format = "{temperatureC}°C";
         };
 
         disk = {
-          format = "<span font='Symbols Nerd Font Mono'>󰋊</span> {percentage_used}%";
+          format = "<span font='Symbols Nerd Font Mono'>󰋊</span>";
           path = "/";
           interval = 30;
           tooltip-format = "{path}: {used} / {total} ({percentage_used}%)";
         };
 
         network = {
-          format-wifi = "<span font='Symbols Nerd Font Mono'>󰖩</span> {signalStrength}%";
+          format-wifi = "<span font='Symbols Nerd Font Mono'>󰖩</span>";
           format-ethernet = "<span font='Symbols Nerd Font Mono'>󰈀</span>";
           format-disconnected = "<span font='Symbols Nerd Font Mono'>󰖪</span>";
           tooltip-format-wifi = "{essid} ({signalStrength}%)\n{ipaddr}";

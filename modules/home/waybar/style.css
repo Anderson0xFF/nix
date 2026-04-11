@@ -27,6 +27,8 @@ window#waybar {
 #clock,
 #tray,
 #wireplumber,
+#pulseaudio.microphone,
+#custom-brightness,
 #disk,
 #cpu,
 #memory,
@@ -142,26 +144,51 @@ window#waybar {
   margin-right: 6px;
 }
 
-/* Demais módulos do right - pill única */
-#wireplumber,
+/* -----------------------------------------------------------
+ * Right side: tray + 3 ilhas (sys, dynamic, power)
+ * Ordem: tray | disk cpu memory | brightness wireplumber mic network temperature | power
+ * ----------------------------------------------------------- */
+
 #disk,
 #cpu,
 #memory,
-#temperature,
+#custom-brightness,
+#wireplumber,
+#pulseaudio.microphone,
 #network,
+#temperature,
 #custom-power {
   background-color: @bg-pill;
-  padding: 0 12px;
+  padding: 0 10px;
 }
 
-#wireplumber {
+/* --- ilha sys: disk cpu memory --- */
+#disk {
   border-radius: 14px 0 0 14px;
   padding-left: 14px;
+  margin-left: 6px;
 }
-
-#custom-power {
+#memory {
   border-radius: 0 14px 14px 0;
   padding-right: 14px;
+}
+
+/* --- ilha dynamic: brightness wireplumber mic network temperature --- */
+#custom-brightness {
+  border-radius: 14px 0 0 14px;
+  padding-left: 14px;
+  margin-left: 6px;
+}
+#temperature {
+  border-radius: 0 14px 14px 0;
+  padding-right: 14px;
+}
+
+/* --- ilha power: custom/power isolado --- */
+#custom-power {
+  border-radius: 14px;
+  padding: 0 14px;
+  margin-left: 6px;
 }
 
 #clock {
@@ -181,6 +208,9 @@ window#waybar {
 #custom-power { color: #f38ba8; }
 #custom-nixos { color: #00C2DF; }
 #custom-notification.has-notifications { color: #f9e2af; }
+#custom-brightness { color: #f9e2af; }
+#pulseaudio.microphone { color: #eba0ac; }
+#pulseaudio.microphone.source-muted { color: #6c7086; }
 
 tooltip {
   background-color: @bg-tooltip;
