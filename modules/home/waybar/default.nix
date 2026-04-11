@@ -30,6 +30,10 @@ let
   brightnessScript = mkScript "waybar-brightness" ./scripts/brightness.sh {
     inherit ddcutil awk;
   };
+
+  compiledStyle = pkgs.runCommand "waybar-style.css" { } ''
+    ${pkgs.sassc}/bin/sassc -t expanded ${./style.scss} $out
+  '';
 in
 {
   programs.waybar = {
@@ -40,9 +44,9 @@ in
         position = "top";
         height = 48;
         spacing = 0;
-        modules-left = [ "custom/nixos" "bluetooth" "niri/language" "network#speed" "custom/notification" "custom/mpris-play" "custom/mpris-progress" "custom/mpris-title" ];
-        modules-center = [ "clock" ];
-        modules-right = [ "tray" "disk" "cpu" "memory" "custom/brightness" "wireplumber" "pulseaudio#microphone" "network" "temperature" "custom/power" ];
+        modules-left = [ "custom/nixos" "niri/language" "network#speed" "custom/mpris-play" "custom/mpris-progress" "custom/mpris-title" ];
+        modules-center = [ "clock" "custom/notification" ];
+        modules-right = [ "tray" "disk" "cpu" "memory" "custom/brightness" "wireplumber" "pulseaudio#microphone" "bluetooth" "network" "temperature" "custom/power" ];
 
         "custom/nixos" = {
           format = "{}";
@@ -197,6 +201,6 @@ in
       };
     };
 
-    style = builtins.readFile ./style.css;
+    style = builtins.readFile compiledStyle;
   };
 }
