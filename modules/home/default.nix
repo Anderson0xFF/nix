@@ -66,54 +66,72 @@
       layer = "overlay";
     };
     extraCss = ''
-      * {
-        all: unset;
+      @define-color accent #cba6f7;
+      @define-color bg-pill rgba(17, 17, 27, 0.86);
+      @define-color fg-color #cdd6f4;
+      @define-color desc-color #9399b2;
+      @define-color entry-bg rgba(30, 30, 46, 0.6);
+
+      window {
+        background: transparent;
+      }
+
+      box.main {
+        padding: 10px;
+        margin: 10px;
+        border-radius: 8px;
+        border: 1px solid alpha(@accent, 0.33);
+        background-color: @bg-pill;
+        color: @fg-color;
         font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font Mono", monospace;
         font-size: 15px;
       }
 
-      #window {
-        background: transparent;
-      }
-
-      box#main {
-        background: rgba(17, 17, 27, 0.86);
-        border: 1px solid rgba(203, 166, 247, 0.33);
-        border-radius: 8px;
-        padding: 10px 14px;
-        color: #cdd6f4;
-      }
-
-      #entry {
-        background: rgba(30, 30, 46, 0.6);
-        border-radius: 8px;
+      text {
+        min-height: 32px;
         padding: 6px 10px;
-        color: #cdd6f4;
-      }
-
-      #entry image {
-        margin-right: 10px;
-      }
-
-      #match {
-        background: transparent;
         border-radius: 8px;
-        padding: 6px 10px;
-        color: #cdd6f4;
+        background-color: @entry-bg;
+        color: @fg-color;
       }
 
-      #match:selected {
-        background: rgba(203, 166, 247, 0.20);
-        color: #cdd6f4;
+      .matches {
+        background-color: transparent;
+        border-radius: 8px;
+        margin-top: 6px;
       }
 
-      #match image {
-        margin-right: 10px;
+      list.plugin {
+        background-color: transparent;
       }
 
-      #plugin {
-        color: #9399b2;
-        padding: 4px 10px;
+      box.plugin:first-child {
+        margin-top: 4px;
+      }
+
+      label.match {
+        color: @fg-color;
+        padding: 4px 8px;
+      }
+
+      label.match.description {
+        font-size: 11px;
+        color: @desc-color;
+      }
+
+      label.plugin.info {
+        font-size: 13px;
+        color: @desc-color;
+      }
+
+      .match {
+        background: transparent;
+        border-radius: 6px;
+      }
+
+      .match:selected {
+        background: alpha(@accent, 0.20);
+        border-left: 3px solid @accent;
       }
     '';
   };
