@@ -86,7 +86,7 @@ window#waybar {
   font-size: 15px;
   transition: color 180ms ease, background-color 180ms ease;
 }
-#custom-mpris-prev:hover { background-color: rgba(203, 166, 247, 0.15); }
+#custom-mpris-prev:hover { background-color: rgba(30, 30, 46, 0.95); }
 
 #custom-mpris-play {
   padding: 0 6px;
@@ -95,14 +95,14 @@ window#waybar {
 }
 #custom-mpris-play.playing { color: #a6e3a1; }
 #custom-mpris-play.paused  { color: #f9e2af; }
-#custom-mpris-play:hover   { background-color: rgba(203, 166, 247, 0.15); }
+#custom-mpris-play:hover   { background-color: rgba(30, 30, 46, 0.95); }
 
 #custom-mpris-next {
   padding: 0 10px 0 6px;
   font-size: 15px;
   transition: color 180ms ease, background-color 180ms ease;
 }
-#custom-mpris-next:hover { background-color: rgba(203, 166, 247, 0.15); }
+#custom-mpris-next:hover { background-color: rgba(30, 30, 46, 0.95); }
 
 #custom-cava {
   padding: 0 8px;

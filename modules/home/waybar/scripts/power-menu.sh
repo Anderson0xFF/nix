@@ -20,8 +20,8 @@ chosen=$(printf '%s\n' \
     --inner-pad 0 \
     --border-radius 8 \
     --border-width 1 \
-    --border-color cba6f755 \
-    --background-color 11111bff \
+    --border-color 191919ff \
+    --background-color 0c0c0cff \
     --text-color cdd6f4ff \
     --match-color cba6f7ff \
     --selection-color 313244ff \
