@@ -129,6 +129,7 @@ in
           exec = "${cavaScript}";
           return-type = "json";
           escape = false;
+          restart-interval = 1;
         };
 
         "custom/mpris-title" = {

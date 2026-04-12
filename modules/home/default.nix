@@ -93,8 +93,8 @@ in
     settings = {
       background-color = "#11111be6";
       text-color = "#cdd6f4";
-      border-color = "#cba6f755";
-      progress-color = "over #cba6f755";
+      border-color = "#0c0c0c";
+      progress-color = "over #0c0c0c";
 
       border-size = 1;
       border-radius = 14;
