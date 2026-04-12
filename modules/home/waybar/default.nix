@@ -11,6 +11,7 @@ let
   ddcutil = "${pkgs.ddcutil}/bin/ddcutil";
   ddcui = "${pkgs.ddcui}/bin/ddcui";
   awk = "${pkgs.gawk}/bin/awk";
+  cava = "${pkgs.cava}/bin/cava";
 
   notificationScript = mkScript "waybar-notification" ./scripts/notification.sh {
     inherit jq makoctl;
@@ -21,11 +22,11 @@ let
   mprisPlayScript = mkScript "waybar-mpris-play" ./scripts/mpris-play.py {
     inherit python playerctl;
   };
-  mprisProgressScript = mkScript "waybar-mpris-progress" ./scripts/mpris-progress.py {
-    inherit python playerctl;
-  };
   mprisTitleScript = mkScript "waybar-mpris-title" ./scripts/mpris-title.py {
     inherit python playerctl;
+  };
+  cavaScript = mkScript "waybar-cava" ./scripts/cava.py {
+    inherit python playerctl cava;
   };
   brightnessScript = mkScript "waybar-brightness" ./scripts/brightness.sh {
     inherit ddcutil awk;
@@ -44,7 +45,7 @@ in
         position = "top";
         height = 48;
         spacing = 0;
-        modules-left = [ "custom/nixos" "niri/language" "network#speed" "custom/mpris-play" "custom/mpris-progress" "custom/mpris-title" ];
+        modules-left = [ "custom/nixos" "niri/language" "network#speed" "custom/mpris-play" "custom/cava" "custom/mpris-title" ];
         modules-center = [ "clock" "custom/notification" ];
         modules-right = [ "tray" "disk" "cpu" "memory" "custom/brightness" "wireplumber" "pulseaudio#microphone" "bluetooth" "network" "temperature" "custom/power" ];
 
@@ -96,10 +97,9 @@ in
           on-click-middle = "playerctl previous";
         };
 
-        "custom/mpris-progress" = {
-          exec = "${mprisProgressScript}";
+        "custom/cava" = {
+          exec = "${cavaScript}";
           return-type = "json";
-          interval = 1;
           escape = false;
         };
 

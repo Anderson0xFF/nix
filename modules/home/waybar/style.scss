@@ -28,7 +28,7 @@ window#waybar {
 #network.speed,
 #custom-notification,
 #custom-mpris-play,
-#custom-mpris-progress,
+#custom-cava,
 #custom-mpris-title,
 #clock,
 #tray,
@@ -70,7 +70,7 @@ window#waybar {
 
 // MPRIS pill
 #custom-mpris-play,
-#custom-mpris-progress,
+#custom-cava,
 #custom-mpris-title {
   background-color: $bg-pill;
   color: #f5c2e7;
@@ -86,13 +86,13 @@ window#waybar {
 #custom-mpris-play.paused  { color: #f9e2af; }
 #custom-mpris-play:hover   { background-color: rgba(203, 166, 247, 0.15); }
 
-#custom-mpris-progress {
-  padding: 0 10px;
+#custom-cava {
+  padding: 0 8px;
   color: #cba6f7;
   font-size: 15px;
-  letter-spacing: -1px;
+  letter-spacing: -3px;
+  min-width: 110px;
 }
-#custom-mpris-progress.paused { color: #6c7086; }
 
 #custom-mpris-title {
   border-radius: 0 $radius $radius 0;
@@ -104,11 +104,11 @@ window#waybar {
 
 // Sem mídia: colapsa
 #custom-mpris-play.stopped,
-#custom-mpris-progress.stopped,
 #custom-mpris-title.stopped,
+#custom-cava.stopped,
 #custom-mpris-play.empty,
-#custom-mpris-progress.empty,
-#custom-mpris-title.empty {
+#custom-mpris-title.empty,
+#custom-cava.empty {
   background-color: transparent;
   color: transparent;
   padding: 0;

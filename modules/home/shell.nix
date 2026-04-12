@@ -5,13 +5,7 @@
     enableCompletion = true;
     syntaxHighlighting.enable = true;
 
-    plugins = [
-      {
-        name = "zsh-autocomplete";
-        src = "${pkgs.zsh-autocomplete}/share/zsh-autocomplete";
-        file = "zsh-autocomplete.plugin.zsh";
-      }
-    ];
+    autosuggestion.enable = true;
 
     shellAliases = {
       explorer = "yazi";
