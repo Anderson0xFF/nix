@@ -69,6 +69,7 @@ in
     mangohud
     notify-desktop
     wl-clipboard
+    obs-studio
     wiremix
     swayosd
     brightnessctl
