@@ -241,7 +241,11 @@ window#waybar {
 
 tooltip {
   background-color: $bg-tooltip;
-  border: 1px solid $bg-pill;
+  border: 1px solid #585b70;
   border-radius: 8px;
+  color: $fg;
+}
+
+tooltip label {
   color: $fg;
 }

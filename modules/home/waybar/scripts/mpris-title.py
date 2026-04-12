@@ -2,6 +2,7 @@
 """Título da música com marquee (scroll horizontal) para o waybar."""
 import json
 import subprocess
+from html import escape as html_escape
 from pathlib import Path
 
 PLAYERCTL = "@playerctl@"
@@ -66,9 +67,9 @@ def main() -> None:
     player = playerctl("metadata", "--format", "{{playerName}}")
 
     full = f"{artist} · {title}" if artist else title
-    display = marquee(full)
+    display = html_escape(marquee(full))
     cls = status.lower()
-    tooltip = f"{player}: {status}\n{title}\n{artist}\n{album}"
+    tooltip = html_escape(f"{player}: {status}\n{title}\n{artist}\n{album}")
     emit(display, cls, tooltip)
 
 

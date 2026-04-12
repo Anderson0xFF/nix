@@ -130,6 +130,7 @@ in
           return-type = "json";
           escape = false;
           restart-interval = 1;
+          tooltip = false;
         };
 
         "custom/mpris-title" = {
