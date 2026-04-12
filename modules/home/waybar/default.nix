@@ -22,6 +22,12 @@ let
   mprisPlayScript = mkScript "waybar-mpris-play" ./scripts/mpris-play.py {
     inherit python playerctl;
   };
+  mprisPrevScript = mkScript "waybar-mpris-prev" ./scripts/mpris-prev.py {
+    inherit python playerctl;
+  };
+  mprisNextScript = mkScript "waybar-mpris-next" ./scripts/mpris-next.py {
+    inherit python playerctl;
+  };
   mprisTitleScript = mkScript "waybar-mpris-title" ./scripts/mpris-title.py {
     inherit python playerctl;
   };
@@ -45,7 +51,7 @@ in
         position = "top";
         height = 48;
         spacing = 0;
-        modules-left = [ "custom/nixos" "niri/language" "network#speed" "custom/mpris-play" "custom/cava" "custom/mpris-title" ];
+        modules-left = [ "custom/nixos" "niri/language" "network#speed" "custom/mpris-prev" "custom/mpris-play" "custom/mpris-next" "custom/cava" "custom/mpris-title" ];
         modules-center = [ "clock" "custom/notification" ];
         modules-right = [ "tray" "disk" "cpu" "memory" "custom/brightness" "wireplumber" "pulseaudio#microphone" "bluetooth" "network" "temperature" "custom/power" ];
 
@@ -87,14 +93,28 @@ in
           on-click-right = "makoctl dismiss --all";
         };
 
+        "custom/mpris-prev" = {
+          exec = "${mprisPrevScript}";
+          return-type = "json";
+          interval = 1;
+          escape = false;
+          on-click = "playerctl previous";
+        };
+
         "custom/mpris-play" = {
           exec = "${mprisPlayScript}";
           return-type = "json";
           interval = 1;
           escape = false;
           on-click = "playerctl play-pause";
-          on-click-right = "playerctl next";
-          on-click-middle = "playerctl previous";
+        };
+
+        "custom/mpris-next" = {
+          exec = "${mprisNextScript}";
+          return-type = "json";
+          interval = 1;
+          escape = false;
+          on-click = "playerctl next";
         };
 
         "custom/cava" = {
