@@ -38,6 +38,14 @@ let
     inherit ddcutil awk;
   };
 
+  fuzzel = "${pkgs.fuzzel}/bin/fuzzel";
+  swaylock = "${pkgs.swaylock-effects}/bin/swaylock";
+  systemctl = "${pkgs.systemd}/bin/systemctl";
+
+  powerMenuScript = mkScript "waybar-power-menu" ./scripts/power-menu.sh {
+    inherit fuzzel swaylock systemctl;
+  };
+
   compiledStyle = pkgs.runCommand "waybar-style.css" { } ''
     ${pkgs.sassc}/bin/sassc -t expanded ${./style.scss} $out
   '';
@@ -216,7 +224,7 @@ in
         "custom/power" = {
           format = "<span font='Symbols Nerd Font Mono'>󰐥</span>";
           tooltip = false;
-          on-click = "niri msg action quit";
+          on-click = "${powerMenuScript}";
         };
       };
     };
