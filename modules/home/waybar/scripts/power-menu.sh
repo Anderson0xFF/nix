@@ -11,24 +11,24 @@ chosen=$(printf '%s\n' \
   '󰜉  Reboot' \
   '󰐥  Shutdown' \
 | @fuzzel@ --dmenu \
-    --prompt "" \
+    --hide-prompt \
     --lines 5 \
     --width 14 \
     --anchor top-right \
     --horizontal-pad 16 \
     --vertical-pad 8 \
-    --inner-pad 4 \
-    --line-height 22 \
+    --inner-pad 0 \
     --border-radius 8 \
     --border-width 1 \
     --border-color cba6f755 \
-    --background-color 11111bdd \
+    --background-color 11111bff \
     --text-color cdd6f4ff \
     --match-color cba6f7ff \
-    --selection-color cba6f733 \
+    --selection-color 313244ff \
     --selection-text-color cdd6f4ff \
     --font "JetBrainsMono Nerd Font:size=13" \
     --no-icons \
+    --keyboard-focus on-demand \
 ) || exit 0
 
 case "$chosen" in
