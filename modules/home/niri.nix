@@ -145,6 +145,18 @@ in
         max-height = 450;
       }
 
+      # wiremix: gerenciador de audio floating
+      {
+        matches = [
+          { app-id = "^com\\.mitchellh\\.ghostty$"; title = "^wiremix$"; }
+        ];
+        open-floating = true;
+        default-column-width = {};
+        default-window-height = {};
+        max-width = 800;
+        max-height = 600;
+      }
+
       # Waypaper: seletor de wallpaper floating
       {
         matches = [{ app-id = "^waypaper$"; }];
