@@ -153,6 +153,7 @@ in
           format-muted = "<span font='Symbols Nerd Font Mono'>󰝟</span>";
           format-icons = [ "󰕿" "󰖀" "󰕾" ];
           on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+          on-click-right = "ghostty --title=wiremix -e wiremix --tab output";
           on-scroll-up = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";
           on-scroll-down = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
           max-volume = 150;
@@ -177,6 +178,7 @@ in
           format-source-muted = "󰍭";
           tooltip-format = "Mic: {source_volume}% ({source_desc})";
           on-click = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+          on-click-right = "ghostty --title=wiremix -e wiremix --tab input";
           on-scroll-up = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+";
           on-scroll-down = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-";
           scroll-step = 5;
