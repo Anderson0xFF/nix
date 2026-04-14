@@ -141,8 +141,8 @@ in
         open-floating = true;
         default-column-width = {};
         default-window-height = {};
-        max-width = 600;
-        max-height = 450;
+        max-width = 800;
+        max-height = 600;
       }
 
       # wiremix: gerenciador de audio floating
