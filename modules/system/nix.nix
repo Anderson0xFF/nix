@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ ... }:
 {
   # Garbage collection: remove gerações com mais de 7 dias, semanalmente
   nix.gc = {
@@ -16,7 +16,4 @@
   # Aumenta o buffer de download (padrão 64MB) para evitar avisos
   # "download buffer is full" ao baixar muitos store paths em paralelo
   nix.settings.download-buffer-size = 524288000; # 500 MB
-
-
-  nixpkgs.config.allowFree = true;
-}
+ }

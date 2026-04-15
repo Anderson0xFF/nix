@@ -22,5 +22,6 @@
   ];
 
   virtualisation.vmware.host.enable = true;
+  nixpkgs.config.allowUnfree = true;
   system.stateVersion = "25.11";
 }
