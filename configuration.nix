@@ -22,6 +22,5 @@
   ];
 
   virtualisation.vmware.host.enable = true;
-  allowUnfree = true;
   system.stateVersion = "25.11";
 }
