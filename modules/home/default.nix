@@ -74,6 +74,8 @@ in
     swayosd
     brightnessctl
     playerctl
+
+    claude-code
   ] ++ [ brightnessOsdWrapped musicOsdWrapped ];
 
   gtk = {
