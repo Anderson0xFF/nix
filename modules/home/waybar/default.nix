@@ -31,6 +31,9 @@ let
   mprisTitleScript = mkScript "waybar-mpris-title" ./scripts/mpris-title.py {
     inherit python playerctl;
   };
+  mprisCmdScript = mkScript "waybar-mpris-cmd" ./scripts/mpris-cmd.py {
+    inherit python playerctl;
+  };
   cavaScript = mkScript "waybar-cava" ./scripts/cava.py {
     inherit python playerctl cava;
   };
@@ -106,7 +109,7 @@ in
           return-type = "json";
           interval = 1;
           escape = false;
-          on-click = "playerctl previous";
+          on-click = "${mprisCmdScript} previous";
         };
 
         "custom/mpris-play" = {
@@ -114,7 +117,7 @@ in
           return-type = "json";
           interval = 1;
           escape = false;
-          on-click = "playerctl play-pause";
+          on-click = "${mprisCmdScript} play-pause";
         };
 
         "custom/mpris-next" = {
@@ -122,7 +125,7 @@ in
           return-type = "json";
           interval = 1;
           escape = false;
-          on-click = "playerctl next";
+          on-click = "${mprisCmdScript} next";
         };
 
         "custom/cava" = {
@@ -138,8 +141,8 @@ in
           return-type = "json";
           interval = 1;
           escape = false;
-          on-scroll-up = "playerctl next";
-          on-scroll-down = "playerctl previous";
+          on-scroll-up = "${mprisCmdScript} next";
+          on-scroll-down = "${mprisCmdScript} previous";
         };
 
         clock = {

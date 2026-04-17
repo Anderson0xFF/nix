@@ -1,15 +1,13 @@
 #!@python@/bin/python3
-"""Botão play/pause para o waybar via playerctl."""
-import json
+"""Wrapper para on-click/on-scroll da waybar: aplica play-pause/next/previous
+ao player MPRIS ativo, ignorando fantasmas em estado Stopped."""
 import subprocess
+import sys
 
 PLAYERCTL = "@playerctl@"
 
-GLYPH_PLAY = "\uf04b"   # nf-fa-play
-GLYPH_PAUSE = "\uf04c"  # nf-fa-pause
-GLYPH_STOP = "\uf04d"   # nf-fa-stop
-
 PREFERENCE = ("spotify", "firefox", "chromium")
+ALLOWED = {"play-pause", "next", "previous"}
 
 
 def _pref_key(name: str) -> int:
@@ -53,35 +51,15 @@ def select_player() -> str | None:
     return pool[0]
 
 
-def playerctl(*args: str, player: str | None = None) -> str:
-    cmd = [PLAYERCTL]
-    if player:
-        cmd += ["--player", player]
-    cmd += list(args)
-    try:
-        return subprocess.run(
-            cmd,
-            capture_output=True,
-            text=True,
-            check=False,
-        ).stdout.strip()
-    except FileNotFoundError:
-        return ""
-
-
 def main() -> None:
+    if len(sys.argv) != 2 or sys.argv[1] not in ALLOWED:
+        print(f"uso: {sys.argv[0]} {{play-pause|next|previous}}", file=sys.stderr)
+        sys.exit(2)
+    cmd = sys.argv[1]
     player = select_player()
-    status = playerctl("status", player=player) if player else ""
-    if status == "Playing":
-        glyph, cls = GLYPH_PAUSE, "playing"
-    elif status == "Paused":
-        glyph, cls = GLYPH_PLAY, "paused"
-    else:
-        glyph, cls = GLYPH_STOP, "stopped"
-
-    text = f'<span font="Symbols Nerd Font Mono 14">{glyph}</span>'
-    payload = {"text": text, "class": cls, "alt": cls, "tooltip": "Play/Pause"}
-    print(json.dumps(payload, ensure_ascii=False))
+    if not player:
+        return
+    subprocess.run([PLAYERCTL, "--player", player, cmd], check=False)
 
 
 if __name__ == "__main__":

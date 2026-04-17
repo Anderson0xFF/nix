@@ -41,18 +41,49 @@ noise_reduction = 0.95
 """
 
 
-def mpris_active() -> bool:
+PREFERENCE = ("spotify", "firefox", "chromium")
+
+
+def _pref_key(name: str) -> int:
+    for i, prefix in enumerate(PREFERENCE):
+        if name.startswith(prefix):
+            return i
+    return len(PREFERENCE)
+
+
+def select_player() -> str | None:
     try:
-        result = subprocess.run(
-            [PLAYERCTL, "status"],
+        listing = subprocess.run(
+            [PLAYERCTL, "-l"],
             capture_output=True,
             text=True,
             check=False,
-        )
+        ).stdout.strip()
     except FileNotFoundError:
-        return False
-    status = result.stdout.strip()
-    return status in ("Playing", "Paused")
+        return None
+    names = [n for n in listing.splitlines() if n]
+    if not names:
+        return None
+
+    playing = []
+    for name in names:
+        st = subprocess.run(
+            [PLAYERCTL, "--player", name, "status"],
+            capture_output=True,
+            text=True,
+            check=False,
+        ).stdout.strip()
+        if st == "Playing":
+            playing.append(name)
+
+    if not playing:
+        return None
+    playing.sort(key=lambda n: (_pref_key(n), n))
+    return playing[0]
+
+
+def mpris_active() -> bool:
+    return select_player() is not None
 
 
 def emit(text: str, cls: str) -> None:

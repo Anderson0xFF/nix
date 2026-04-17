@@ -12,11 +12,59 @@ STATE_DIR = Path("/tmp")
 OFFSET_FILE = STATE_DIR / "waybar-mpris-offset"
 LAST_TITLE_FILE = STATE_DIR / "waybar-mpris-last-title"
 
+PREFERENCE = ("spotify", "firefox", "chromium")
 
-def playerctl(*args: str) -> str:
+
+def _pref_key(name: str) -> int:
+    for i, prefix in enumerate(PREFERENCE):
+        if name.startswith(prefix):
+            return i
+    return len(PREFERENCE)
+
+
+def select_player() -> str | None:
+    """Retorna o player com status Playing (ou Paused, se nenhum tocar), ou None."""
+    try:
+        listing = subprocess.run(
+            [PLAYERCTL, "-l"],
+            capture_output=True,
+            text=True,
+            check=False,
+        ).stdout.strip()
+    except FileNotFoundError:
+        return None
+    names = [n for n in listing.splitlines() if n]
+    if not names:
+        return None
+
+    playing, paused = [], []
+    for name in names:
+        st = subprocess.run(
+            [PLAYERCTL, "--player", name, "status"],
+            capture_output=True,
+            text=True,
+            check=False,
+        ).stdout.strip()
+        if st == "Playing":
+            playing.append(name)
+        elif st == "Paused":
+            paused.append(name)
+
+    pool = playing or paused
+    if not pool:
+        return None
+    pool.sort(key=lambda n: (_pref_key(n), n))
+    return pool[0]
+
+
+def playerctl(*args: str, player: str | None = None) -> str:
+    cmd = [PLAYERCTL]
+    if player:
+        cmd += ["--player", player]
+    cmd += list(args)
     try:
         return subprocess.run(
-            [PLAYERCTL, *args],
+            cmd,
             capture_output=True,
             text=True,
             check=False,
@@ -56,20 +104,25 @@ def marquee(full: str) -> str:
 
 
 def main() -> None:
-    status = playerctl("status")
+    player = select_player()
+    if not player:
+        emit("", "stopped")
+        return
+
+    status = playerctl("status", player=player)
     if not status or status == "Stopped":
         emit("", "stopped")
         return
 
-    title = playerctl("metadata", "title")
-    artist = playerctl("metadata", "artist")
-    album = playerctl("metadata", "album")
-    player = playerctl("metadata", "--format", "{{playerName}}")
+    title = playerctl("metadata", "title", player=player)
+    artist = playerctl("metadata", "artist", player=player)
+    album = playerctl("metadata", "album", player=player)
+    player_name = playerctl("metadata", "--format", "{{playerName}}", player=player)
 
     full = f"{artist} · {title}" if artist else title
     display = html_escape(marquee(full))
     cls = status.lower()
-    tooltip = html_escape(f"{player}: {status}\n{title}\n{artist}\n{album}")
+    tooltip = html_escape(f"{player_name}: {status}\n{title}\n{artist}\n{album}")
     emit(display, cls, tooltip)
 
 
