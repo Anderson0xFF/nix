@@ -1,77 +1,37 @@
 #!@python@/bin/python3
-"""Botão play/pause para o waybar via playerctl."""
+"""Botão play/pause. Lê o player ativo do arquivo de estado escrito por
+mpris-title para garantir que o botão reflete o player exibido."""
 import json
 import subprocess
+from pathlib import Path
 
 PLAYERCTL = "@playerctl@"
+ACTIVE_PLAYER_FILE = Path("/tmp/waybar-mpris-player")
 
-GLYPH_PLAY = "\uf04b"   # nf-fa-play
-GLYPH_PAUSE = "\uf04c"  # nf-fa-pause
-GLYPH_STOP = "\uf04d"   # nf-fa-stop
-
-PREFERENCE = ("spotify", "firefox", "chromium")
-
-
-def _pref_key(name: str) -> int:
-    for i, prefix in enumerate(PREFERENCE):
-        if name.startswith(prefix):
-            return i
-    return len(PREFERENCE)
+GLYPH_PLAY = "\uf04b"
+GLYPH_PAUSE = "\uf04c"
+GLYPH_STOP = "\uf04d"
 
 
-def select_player() -> str | None:
+def active_player() -> str | None:
     try:
-        listing = subprocess.run(
-            [PLAYERCTL, "-l"],
-            capture_output=True,
-            text=True,
-            check=False,
-        ).stdout.strip()
+        name = ACTIVE_PLAYER_FILE.read_text().strip()
     except FileNotFoundError:
         return None
-    names = [n for n in listing.splitlines() if n]
-    if not names:
-        return None
-
-    playing, paused = [], []
-    for name in names:
-        st = subprocess.run(
-            [PLAYERCTL, "--player", name, "status"],
-            capture_output=True,
-            text=True,
-            check=False,
-        ).stdout.strip()
-        if st == "Playing":
-            playing.append(name)
-        elif st == "Paused":
-            paused.append(name)
-
-    pool = playing or paused
-    if not pool:
-        return None
-    pool.sort(key=lambda n: (_pref_key(n), n))
-    return pool[0]
+    return name or None
 
 
-def playerctl(*args: str, player: str | None = None) -> str:
-    cmd = [PLAYERCTL]
-    if player:
-        cmd += ["--player", player]
-    cmd += list(args)
-    try:
-        return subprocess.run(
-            cmd,
-            capture_output=True,
-            text=True,
-            check=False,
-        ).stdout.strip()
-    except FileNotFoundError:
-        return ""
+def player_status(name: str) -> str:
+    return subprocess.run(
+        [PLAYERCTL, "--player", name, "status"],
+        capture_output=True, text=True, check=False,
+    ).stdout.strip()
 
 
 def main() -> None:
-    player = select_player()
-    status = playerctl("status", player=player) if player else ""
+    player = active_player()
+    status = player_status(player) if player else ""
+
     if status == "Playing":
         glyph, cls = GLYPH_PAUSE, "playing"
     elif status == "Paused":

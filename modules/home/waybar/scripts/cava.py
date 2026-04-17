@@ -1,5 +1,6 @@
 #!@python@/bin/python3
-"""Waveform via cava para o waybar, com colapso quando não há MPRIS."""
+"""Waveform via cava para o waybar. Colapsa quando o player ativo (escolhido
+por mpris-title) não está tocando."""
 import json
 import os
 import signal
@@ -7,6 +8,7 @@ import subprocess
 import sys
 import tempfile
 import time
+from pathlib import Path
 
 CAVA = "@cava@"
 PLAYERCTL = "@playerctl@"
@@ -14,7 +16,8 @@ PLAYERCTL = "@playerctl@"
 BARS = 20
 FRAMERATE = 30
 BARS_ICONS = ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
-MPRIS_CHECK_INTERVAL = 1.0
+ACTIVE_CHECK_INTERVAL = 1.0
+ACTIVE_PLAYER_FILE = Path("/tmp/waybar-mpris-player")
 
 CONFIG_TEMPLATE = f"""
 [general]
@@ -41,49 +44,23 @@ noise_reduction = 0.95
 """
 
 
-PREFERENCE = ("spotify", "firefox", "chromium")
-
-
-def _pref_key(name: str) -> int:
-    for i, prefix in enumerate(PREFERENCE):
-        if name.startswith(prefix):
-            return i
-    return len(PREFERENCE)
-
-
-def select_player() -> str | None:
+def active_player() -> str | None:
     try:
-        listing = subprocess.run(
-            [PLAYERCTL, "-l"],
-            capture_output=True,
-            text=True,
-            check=False,
-        ).stdout.strip()
+        name = ACTIVE_PLAYER_FILE.read_text().strip()
     except FileNotFoundError:
         return None
-    names = [n for n in listing.splitlines() if n]
-    if not names:
-        return None
-
-    playing = []
-    for name in names:
-        st = subprocess.run(
-            [PLAYERCTL, "--player", name, "status"],
-            capture_output=True,
-            text=True,
-            check=False,
-        ).stdout.strip()
-        if st == "Playing":
-            playing.append(name)
-
-    if not playing:
-        return None
-    playing.sort(key=lambda n: (_pref_key(n), n))
-    return playing[0]
+    return name or None
 
 
-def mpris_active() -> bool:
-    return select_player() is not None
+def is_active_playing() -> bool:
+    player = active_player()
+    if not player:
+        return False
+    status = subprocess.run(
+        [PLAYERCTL, "--player", player, "status"],
+        capture_output=True, text=True, check=False,
+    ).stdout.strip()
+    return status == "Playing"
 
 
 def emit(text: str, cls: str) -> None:
@@ -125,17 +102,17 @@ def main() -> None:
     signal.signal(signal.SIGTERM, cleanup)
     signal.signal(signal.SIGINT, cleanup)
 
-    last_mpris_check = 0.0
-    mpris_ok = False
+    last_check = 0.0
+    playing = False
 
     try:
         for line in proc.stdout:
             now = time.monotonic()
-            if now - last_mpris_check >= MPRIS_CHECK_INTERVAL:
-                mpris_ok = mpris_active()
-                last_mpris_check = now
+            if now - last_check >= ACTIVE_CHECK_INTERVAL:
+                playing = is_active_playing()
+                last_check = now
 
-            if not mpris_ok:
+            if not playing:
                 emit_empty()
                 continue
 
