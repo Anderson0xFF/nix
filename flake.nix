@@ -33,7 +33,7 @@
   outputs = { self, nixpkgs, home-manager, niri-flake, nix4nvchad, rust-overlay, walker, ... }:
   let
     commonModules = [
-      { nixpkgs.overlays = [ rust-overlay.overlays.default ]; }
+      { nixpkgs.overlays = [ rust-overlay.overlays.default niri-flake.overlays.niri ]; }
       niri-flake.nixosModules.niri
       home-manager.nixosModules.home-manager
       {
