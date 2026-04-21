@@ -9,6 +9,10 @@
     "vm.dirty_background_ratio" = 5;
     "vm.page-cluster" = 0;
 
+    # Hibernação: libera o máximo de páginas antes de gravar a imagem.
+    # Snapshot menor → gravação/leitura mais rápida no ciclo hibernate/resume.
+    "kernel.power.image_size" = 0;
+
     # Rede - TCP BBR para melhor throughput
     "net.core.default_qdisc" = "fq";
     "net.ipv4.tcp_congestion_control" = "bbr";
