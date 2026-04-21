@@ -310,11 +310,12 @@ in
     #   };
     #   # variable-refresh-rate = true;
     # };
-    outputs."HDMI-1" = {
+    outputs."HDMI-A-1" = {
       scale = 1.0;
       mode = {
         width = 3840;
         height = 2160;
+        refresh = 120.000;
       };
       # variable-refresh-rate = true;
     };
