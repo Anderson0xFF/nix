@@ -10,7 +10,7 @@
 
   boot.kernelPackages = pkgs.linuxPackages;
   boot.kernelParams = [
-    "amdgpu.runpm=0",
+    "amdgpu.runpm=0"
     "amdgpu.dcdebugmask=0x8"
   ];
 
