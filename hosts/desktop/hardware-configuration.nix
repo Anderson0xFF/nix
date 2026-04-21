@@ -13,6 +13,7 @@
     "amdgpu.runpm=0"
     "amdgpu.dcdebugmask=0x8"
     "amdgpu.sg_display=0"
+    "amdgpu.reset_method=4"
   ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
