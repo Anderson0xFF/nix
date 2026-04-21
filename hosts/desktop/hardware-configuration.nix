@@ -8,19 +8,12 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.kernelPackages = pkgs.linuxPackages_6_12;
-
-  # boot.kernelParams = [
-  #   "amdgpu.runpm=0"
-  #   "amdgpu.dcdebugmask=0x8"
-  #   "amdgpu.sg_display=0"
-  #   "amdgpu.reset_method=4"
-  # ];
+  boot.kernelPackages = pkgs.linuxPackages;
 
   boot.kernelParams = [
-    "amdgpu.dpm=1"
-    "amdgpu.aspm=0"
+    "mem_sleep_default=s2idle"
     "amdgpu.runpm=0"
+    "amdgpu.performance_level=high"
     "amdgpu.sg_display=0"
   ];
 
