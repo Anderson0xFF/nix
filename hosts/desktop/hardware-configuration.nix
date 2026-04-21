@@ -17,10 +17,11 @@
   # ];
 
   boot.kernelParams = [
-  "amdgpu.sg_display=0"
-  "amdgpu.dcdebugmask=0x10" # Desativa otimizações de largura de banda que causam crash
-  "amdgpu.dpm=1"            # Força o gerenciamento de energia a ficar ativo mas estável
-];
+    "amdgpu.dpm=1"
+    "amdgpu.aspm=0"
+    "amdgpu.runpm=0"
+    "amdgpu.sg_display=0"
+  ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
