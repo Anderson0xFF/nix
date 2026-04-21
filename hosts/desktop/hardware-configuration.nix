@@ -11,11 +11,11 @@
   boot.kernelPackages = pkgs.linuxPackages;
 
   boot.kernelParams = [
-    "mem_sleep_default=s2idle"
-    "amdgpu.runpm=0"
-    "amdgpu.performance_level=high"
-    "amdgpu.sg_display=0"
+    "resume=/dev/disk/by-uuid/6f8ccdda-c92a-447b-bcdf-3e88e6e3c4ae"
+    "resume_offset=169932800"
   ];
+
+  boot.resumeDevice = "/dev/disk/by-uuid/6f8ccdda-c92a-447b-bcdf-3e88e6e3c4ae";
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
@@ -40,7 +40,7 @@
     };
 
   swapDevices = [
-    { device = "/var/lib/swapfile"; size = 16 * 1024; }  # 16GB swapfile
+    { device = "/var/lib/swapfile"; size = 64 * 1024; }  # 64GB swapfile (hibernação)
   ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

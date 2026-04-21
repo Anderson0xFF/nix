@@ -300,15 +300,14 @@ in
     };
 
     # Output do monitor — descomente e ajuste conforme a máquina
-    # outputs."DP-1" = {
-    #   scale = 1.0;
-    #   mode = {
-    #     width = 3840;
-    #     height = 2160;
-    #     refresh = 239.991;
-    #   };
-    #   # variable-refresh-rate = true;
-    # };
+    outputs."DP-1" = {
+      scale = 1.0;
+      mode = {
+        width = 3840;
+        height = 2160;
+        refresh = 239.991;
+      };
+    };
     outputs."HDMI-A-1" = {
       scale = 1.0;
       mode = {
@@ -316,7 +315,6 @@ in
         height = 2160;
         refresh = 120.000;
       };
-      # variable-refresh-rate = true;
     };
   };
 }

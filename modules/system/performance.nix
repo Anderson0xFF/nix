@@ -18,9 +18,9 @@
     "fs.file-max" = 2097152;
   };
 
-  # Zram - swap comprimido na RAM (~12GB)
+  # Zram desativado: conflita com hibernação (swapfile em /var/lib/swapfile é o resume device).
   zramSwap = {
-    enable = true;
+    enable = false;
     algorithm = "zstd";
     memoryPercent = 25;
   };
