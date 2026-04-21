@@ -25,13 +25,6 @@
     memoryPercent = 25;
   };
 
-  # Hibernação: libera o máximo de páginas antes de gravar a imagem.
-  # Snapshot menor → gravação/leitura mais rápida no ciclo hibernate/resume.
-  # /sys/power/image_size fica em sysfs (não sysctl), então usa tmpfiles.
-  systemd.tmpfiles.rules = [
-    "w /sys/power/image_size - - - - 0"
-  ];
-
   # # EarlyOOM - previne travamento total por falta de RAM
   # services.earlyoom = {
   #   enable = true;
