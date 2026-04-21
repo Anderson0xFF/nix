@@ -9,12 +9,18 @@
     ];
 
   boot.kernelPackages = pkgs.linuxPackages;
+  # boot.kernelParams = [
+  #   "amdgpu.runpm=0"
+  #   "amdgpu.dcdebugmask=0x8"
+  #   "amdgpu.sg_display=0"
+  #   "amdgpu.reset_method=4"
+  # ];
+
   boot.kernelParams = [
-    "amdgpu.runpm=0"
-    "amdgpu.dcdebugmask=0x8"
-    "amdgpu.sg_display=0"
-    "amdgpu.reset_method=4"
-  ];
+  "amdgpu.sg_display=0"
+  "amdgpu.dcdebugmask=0x10" # Desativa otimizações de largura de banda que causam crash
+  "amdgpu.dpm=1"            # Força o gerenciamento de energia a ficar ativo mas estável
+];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];

@@ -165,12 +165,6 @@ in
     QT_QPA_PLATFORMTHEME = lib.mkForce "xdgdesktopportal";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     QT_QPA_PLATFORM = "wayland;xcb";
-    
-    # Electron apps (VS Code, Discord, etc.) em Wayland nativo
-    # NIXOS_OZONE_WL faz o wrapper NixOS injetar flags Wayland nos apps Electron.
-    # Discord precisa disso (injeta --ozone-platform=wayland).
-    # VS Code recebe --ozone-platform-hint=auto via wrapper, mas code-flags.conf
-    # sobrescreve com --ozone-platform=wayland (flag mais forte).
     NIXOS_OZONE_WL = "1";
     NIXPKGS_ALLOW_UNFREE="1";
     ELECTRON_OZONE_PLATFORM_HINT = "wayland";
