@@ -8,7 +8,8 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.kernelPackages = pkgs.linuxPackages;
+  boot.kernelPackages = pkgs.linuxPackages_lts;
+
   # boot.kernelParams = [
   #   "amdgpu.runpm=0"
   #   "amdgpu.dcdebugmask=0x8"
