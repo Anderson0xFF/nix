@@ -10,9 +10,7 @@
 
   boot.kernelPackages = pkgs.linuxPackages;
   boot.kernelParams = [
-    "amd_pstate=active"
-    "amdgpu.ppfeaturemask=0xffffffff"  # Desativa GFXOFF — evita MODE1 reset no resume (RDNA2)
-    "amdgpu.dcdebugmask=0x10"           # Melhora resume do display controller
+    "amdgpu.runpm=0"
   ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
@@ -43,6 +41,7 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.enableAllFirmware = true;
+  hardware.enableRedistributableFirmware = true;
   hardware.cpu.amd.updateMicrocode = true;
 }
 
