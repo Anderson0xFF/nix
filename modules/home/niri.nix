@@ -308,13 +308,13 @@ in
         refresh = 239.991;
       };
     };
-    # outputs."HDMI-A-1" = {
-    #   scale = 1.0;
-    #   mode = {
-    #     width = 3840;
-    #     height = 2160;
-    #     refresh = 120.000;
-    #   };
-    # };
+    outputs."HDMI-A-1" = {
+      scale = 1.0;
+      mode = {
+        width = 3840;
+        height = 2160;
+        refresh = 120.000;
+      };
+    };
   };
 }
