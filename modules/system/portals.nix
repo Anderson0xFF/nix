@@ -8,7 +8,7 @@
       pkgs.xdg-desktop-portal-gnome
     ];
     config = {
-      common.default = [ "gtk" ];
+      common.default = [ "gnome" "gtk" ];
       niri.default = [ "gnome" "gtk" ];
     };
   };
