@@ -52,7 +52,7 @@ in
     yazi
     waypaper
     zed-editor
-    discord
+    vesktop
     discordo
     spotify
     thunar
