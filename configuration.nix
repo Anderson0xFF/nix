@@ -14,7 +14,7 @@
     ./modules/system/users.nix
     ./modules/system/programs.nix
     ./modules/system/ssh.nix
-    ./modules/system/ly.nix
+    ./modules/system/greetd.nix
     ./modules/system/docker.nix
     ./modules/system/ddcutil.nix
     ./modules/system/webcam.nix

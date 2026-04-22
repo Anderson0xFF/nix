@@ -28,16 +28,7 @@
     ];
   };
   programs.niri.enable = true;
-  # Marca a sessão niri como systemd-aware para o xsession-wrapper do NixOS,
-  # evitando que ele suba `nixos-fake-graphical-session.target` antes do niri
-  # criar o socket Wayland. Sem isso, services com
-  # `ConditionEnvironment=WAYLAND_DISPLAY` (walker, elephant) são pulados.
-  programs.niri.package = pkgs.niri-unstable.overrideAttrs (old: {
-    postFixup = (old.postFixup or "") + ''
-      substituteInPlace $out/share/wayland-sessions/niri.desktop \
-        --replace-fail 'DesktopNames=niri' 'DesktopNames=niri;X-NIXOS-SYSTEMD-AWARE'
-    '';
-  });
+  programs.niri.package = pkgs.niri-unstable;
   services.envfs.enable = true;
   security.pam.services.swaylock = {};
 }
