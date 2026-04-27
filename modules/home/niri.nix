@@ -9,8 +9,6 @@ in
       options = "grp:alt_shift_toggle";
     };
 
-    xwayland.off = {};
-    
     prefer-no-csd = true;
     spawn-at-startup = [
       { command = [ "waybar" ]; }
