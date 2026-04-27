@@ -11,7 +11,7 @@
     ./modules/home/walker
     ./modules/home/niri.nix
     ./modules/home/neovim.nix
-    ./modules/home/swaylock.nix
+    ./modules/home/hyprlock.nix
     ./modules/home/swayidle.nix
     ./modules/home/docker-tray.nix
   ];

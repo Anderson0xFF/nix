@@ -32,7 +32,7 @@ chosen=$(printf '%s\n' \
 ) || exit 0
 
 case "$chosen" in
-  *Lock*)      @swaylock@ ;;
+  *Lock*)      @hyprlock@ ;;
   *Logout*)    niri msg action quit ;;
   *Hibernate*) @systemctl@ hibernate ;;
   *Reboot*)    @systemctl@ reboot ;;

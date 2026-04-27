@@ -9,6 +9,8 @@ in
       options = "grp:alt_shift_toggle";
     };
 
+    xwayland.off = {};
+    
     prefer-no-csd = true;
     spawn-at-startup = [
       { command = [ "waybar" ]; }
@@ -187,7 +189,7 @@ in
       "Mod+Up".action = a.focus-window-up;
       "Mod+Down".action = a.focus-window-down;
       # Lock screen
-      "Mod+L".action = a.spawn "swaylock";
+      "Mod+L".action = a.spawn "hyprlock";
 
       # Mover janelas
       "Mod+Shift+Left".action = a.move-column-left;

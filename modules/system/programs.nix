@@ -30,5 +30,5 @@
   programs.niri.enable = true;
   programs.niri.package = pkgs.niri-unstable;
   services.envfs.enable = true;
-  security.pam.services.swaylock = {};
+  security.pam.services.hyprlock = {};
 }

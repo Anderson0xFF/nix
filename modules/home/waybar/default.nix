@@ -42,11 +42,11 @@ let
   };
 
   fuzzel = "${pkgs.fuzzel}/bin/fuzzel";
-  swaylock = "${pkgs.swaylock-effects}/bin/swaylock";
+  hyprlock = "${pkgs.hyprlock}/bin/hyprlock";
   systemctl = "${pkgs.systemd}/bin/systemctl";
 
   powerMenuScript = mkScript "waybar-power-menu" ./scripts/power-menu.sh {
-    inherit fuzzel swaylock systemctl;
+    inherit fuzzel hyprlock systemctl;
   };
 
   compiledStyle = pkgs.runCommand "waybar-style.css" { } ''
