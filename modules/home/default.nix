@@ -74,6 +74,7 @@ in
     swayosd
     brightnessctl
     playerctl
+    vlc
 
     claude-code
   ] ++ [ brightnessOsdWrapped musicOsdWrapped ];
@@ -122,7 +123,7 @@ in
 
   qt = {
     enable = true;
-    platformTheme.name = "gtk";  # segue o tema GTK
+    platformTheme.name = "gtk";
     style.name = "adwaita-dark";
   };
 

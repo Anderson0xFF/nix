@@ -11,7 +11,7 @@
     htop
     firefox
     wl-clipboard
-    xwayland-satellite
+    amdgpu_top
     xclip
     feh
     playerctl

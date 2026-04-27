@@ -5,7 +5,7 @@
         settings = {
             theme = "HotPurpleTrafficLight";
             theme_background = false;
-            update_ms = 200;
+            update_ms = 500;
         };
     };
 }
