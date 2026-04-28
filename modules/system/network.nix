@@ -1,8 +1,6 @@
 { ... }:
 {
   networking = {
-    # hostName é definido em cada host (hosts/*/default.nix)
-    # hostName = "nixos-workstation";
     networkmanager = {
       enable = true;
       dns = "none";
