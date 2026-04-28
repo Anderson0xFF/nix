@@ -15,5 +15,6 @@
     xclip
     feh
     playerctl
+    xwayland-satellite
   ];
 }
