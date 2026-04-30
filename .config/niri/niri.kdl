@@ -145,7 +145,7 @@ binds {
     Mod+Up           { focus-window-up; }
     Mod+Down         { focus-window-down; }
 
-    Mod+L            { spawn "hyprlock"; }
+    Mod+L            { spawn "sh" "-c" "pidof -q hyprlock || hyprlock"; }
 
     Mod+Shift+Left   { move-column-left; }
     Mod+Shift+Right  { move-column-right; }

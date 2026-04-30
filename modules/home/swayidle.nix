@@ -3,11 +3,14 @@
   services.swayidle = {
     enable = true;
     events = {
-      before-sleep = "${pkgs.hyprlock}/bin/hyprlock";
-      lock = "${pkgs.hyprlock}/bin/hyprlock";
+      before-sleep = "${pkgs.procps}/bin/pidof -q hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
+      lock         = "${pkgs.procps}/bin/pidof -q hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
     };
     timeouts = [
-      { timeout = 300;  command = "${pkgs.hyprlock}/bin/hyprlock"; }   # 5 min → lock
+      {
+        timeout = 300;
+        command = "${pkgs.procps}/bin/pidof -q hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
+      }
       # Desabilitado: power-off-monitors desconecta o conector DP-1 no driver AMDGPU,
       # matando xwayland-satellite e crashando apps X11 (VMware, etc).
       # { timeout = 600;  command = "niri msg action power-off-monitors"; }
