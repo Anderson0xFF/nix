@@ -17,7 +17,7 @@ Esses arquivos não dependem do NixOS — basta copiar ou converter:
 | `modules/home/waybar.nix` | Converter para `~/.config/waybar/config` + `style.css` |
 | `modules/home/ghostty.nix` | Converter para `~/.config/ghostty/config` |
 | `modules/home/btop.nix` | Converter para `~/.config/btop/btop.conf` |
-| `modules/home/swaylock.nix` | Converter para `~/.config/swaylock/config` |
+| `modules/home/hyprlock.nix` | Converter para `~/.config/hypr/hyprlock.conf` |
 | `modules/home/swayidle.nix` | Converter para `~/.config/swayidle/config` |
 | `modules/home/fastfetch.nix` | Converter para `~/.config/fastfetch/config.jsonc` |
 | `modules/home/git.nix` | `git config --global user.name/email` |
@@ -36,30 +36,48 @@ Esses arquivos não dependem do NixOS — basta copiar ou converter:
 | `htop` | `htop` |
 | `firefox` | `firefox` |
 | `wl-clipboard` | `wl-clipboard` |
-| `xwayland-satellite` | `xwayland-satellite` |
 | `xclip` | `xclip` |
 | `feh` | `feh` |
-| `postgresql` | `postgresql` |
-| `glib`, `gtk3`, `gtk4`, `libadwaita` | Via gerenciador de pacotes da distro |
+| `playerctl` | `playerctl` |
+| `amdgpu_top` | `amdgpu_top` |
+| `xwayland-satellite` | `xwayland-satellite` |
 
 ### Pacotes do usuário (`modules/home/default.nix`)
 
-| NixOS | Equivalente genérico |
-|---|---|
-| `ghostty` | `ghostty` |
-| `alacritty` | `alacritty` |
-| `btop` | `btop` |
-| `fastfetch` | `fastfetch` |
-| `swaybg` | `swaybg` |
-| `zed-editor` | `zed-editor` |
-| `vscode` | `vscode` |
-| `discord` | `discord` |
-| `spotify` | `spotify` |
-| `thunar` | `thunar` |
-| `nautilus` | `nautilus` |
-| `zoom-us` | `zoom` |
-| `guvcview` | `guvcview` |
-| `steam` | `steam` |
+| NixOS | Equivalente genérico | Categoria |
+|---|---|---|
+| `ghostty` | `ghostty` | Terminal |
+| `alacritty` | `alacritty` | Terminal |
+| `btop` | `btop` | CLI / monitor |
+| `fastfetch` | `fastfetch` | CLI / info |
+| `eza` | `eza` | CLI (substitui `ls`) |
+| `bat` | `bat` | CLI (substitui `cat`) |
+| `yazi` | `yazi` | CLI (file manager) |
+| `awww` | `awww` (AUR) | CLI |
+| `waypaper` | `waypaper` | Wallpaper |
+| `zed-editor` | `zed` | Editor / IDE |
+| `vscode` | `code` / `visual-studio-code` | Editor / IDE |
+| `vesktop` | `vesktop` | Comunicação |
+| `discordo` | `discordo` | Comunicação (TUI) |
+| `spotify` | `spotify` | Mídia |
+| `vlc` | `vlc` | Mídia |
+| `thunar` | `thunar` | File manager |
+| `tumbler` | `tumbler` | Thumbnails (Thunar) |
+| `nautilus` | `nautilus` | File manager |
+| `dbeaver-bin` | `dbeaver` | DB IDE |
+| `jetbrains.datagrip` | `datagrip` | DB IDE |
+| `zoom-us` | `zoom` | Conferência |
+| `guvcview` | `guvcview` | Webcam |
+| `steam` | `steam` | Jogos |
+| `mangohud` | `mangohud` | Overlay (jogos) |
+| `obs-studio` | `obs-studio` | Captura/streaming |
+| `wiremix` | `wiremix` | Áudio TUI |
+| `swayosd` | `swayosd` | OSD |
+| `brightnessctl` | `brightnessctl` | Brilho |
+| `notify-desktop` | `libnotify` (`notify-send`) | Notificações |
+| `grim` | `grim` | Screenshot Wayland |
+| `slurp` | `slurp` | Region select Wayland |
+| `claude-code` | `claude-code` | CLI / IA |
 
 ---
 
