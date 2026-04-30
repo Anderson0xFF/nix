@@ -209,8 +209,7 @@ binds {
 }
 
 gestures {
-    hot-corners {
-    }
+    hot-corners {}
 }
 
 output "DP-1" {

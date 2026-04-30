@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let
   compiledStyle = pkgs.runCommand "walker-style.css" { } ''
-    ${pkgs.sassc}/bin/sassc -t expanded ${./style.scss} $out
+    ${pkgs.sassc}/bin/sassc -t expanded ${../../../.config/walker/themes/catppuccin-pill/style.scss} $out
   '';
 in
 {
@@ -13,8 +13,6 @@ in
       style = builtins.readFile compiledStyle;
     };
 
-    config = {
-      theme = "catppuccin-pill";
-    };
+    config = builtins.fromTOML (builtins.readFile ../../../.config/walker/config.toml);
   };
 }
